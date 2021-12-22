@@ -17,9 +17,9 @@ typedef struct s_philo
 	pthread_t		thread;
 	pthread_mutex_t	*left;
 	pthread_mutex_t	*right;
-	pthread_mutex_t	*available;
-	struct timeval	last_eat;
+	pthread_mutex_t	*lock;
 	struct s_engine	*e;
+	struct timeval	last_eat;
 }	t_philo;
 
 typedef struct s_engine
@@ -28,15 +28,19 @@ typedef struct s_engine
 	pthread_mutex_t	*forks;
 	t_philo			*philos;
 	struct timeval	start_time;
-	pthread_mutex_t	*engine_available;
+	pthread_mutex_t	*interrupt;
 }	t_engine;
 
 //	@func
 /*
+** < checks.c > */
+
+void	check_argc(const int argc);
+void	init_flag(t_engine *e, const int argc, const char *argv[]);
+/*
 ** < init_engine.c > */
 
-void	init_flag(t_engine *e, const int argc, const char *argv[]);
-void	init_engine(t_engine *e);
+void	init_engine(t_engine *e, const int argc, const char *argv[]);
 void	del_engine(t_engine *e);
 /*
 ** < philo.c > */

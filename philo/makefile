@@ -25,7 +25,7 @@ RM       := rm -rf
 
 # ===== Packages =====
 PKGS     := engine utils
-engineV  := philosophers philo init_engine
+engineV  := main checks philo init_engine
 utilsV   := ytime ythread yutils
 
 # ===== Macros =====
