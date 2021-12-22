@@ -2,10 +2,10 @@
 
 int	main(const int argc, const char *argv[])
 {
-	t_engine	e;
+	t_engine	engine;
 
-	init_engine(&e, argc, argv);
-	run_engine(&e);
-	del_engine(&e);
+	init_engine(&engine, argc, argv);
+	run_engine(&engine);
+	del_engine(&engine);
 	return (0);
 }

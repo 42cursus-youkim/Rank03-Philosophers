@@ -40,9 +40,5 @@ void	del_engine(t_engine *e);
 void	init_philosopher(t_engine *e, int id, t_philo *philo);
 void	init_engine(t_engine *e, const int argc, const char *argv[]);
 void	run_engine(t_engine *e);
-/*
-** < philo.c > */
-
-void	*routine(void *arg);
 //	@end
 #endif

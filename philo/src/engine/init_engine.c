@@ -12,6 +12,8 @@ void	init_philosopher(t_engine *e, int id, t_philo *philo)
 	init_mutex(&philo->lock);
 }
 
+/*	allocate memory for philosophers and forks. id start from 1.
+*/
 void	init_engine(t_engine *e, const int argc, const char *argv[])
 {
 	int	id;

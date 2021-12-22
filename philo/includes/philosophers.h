@@ -16,6 +16,7 @@
 
 //	===== philosophers =====
 # include "engine.h"
+# include "philo.h"
 # include "utils.h"
 
 #endif

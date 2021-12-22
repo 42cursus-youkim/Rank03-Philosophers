@@ -24,8 +24,9 @@ DFLAGS	 := -g3 -DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address"
 RM       := rm -rf
 
 # ===== Packages =====
-PKGS     := engine utils
-engineV  := main checks philo init_engine del_engine
+PKGS     := engine philo utils
+engineV  := main checks init_engine del_engine
+philoV   := philo manager
 utilsV   := ytime ythread ymutex yutils
 
 # ===== Macros =====
@@ -65,7 +66,7 @@ fclean: clean
 re: fclean all
 
 # ===== Test =====
-TEST := ./$(NAME) 3 410 200 200 3
+TEST := ./$(NAME) 2 410 200 200 3 #philos death eat sleep
 test: docs all cls
 	@$(call log, Y, Running Test...)
 	@$(TEST)
