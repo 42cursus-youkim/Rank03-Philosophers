@@ -1,4 +1,4 @@
-#include "philo.h"
+#include "philosophers.h"
 
 size_t	getmsec(void)
 {

@@ -1,5 +1,5 @@
-#ifndef PHILO_H
-# define PHILO_H
+#ifndef PHILOSOPHERS_H
+# define PHILOSOPHERS_H
 
 //	===== utils =====
 # include <stdbool.h>
@@ -13,7 +13,8 @@
 //	===== thread =====
 # include <pthread.h>
 
-
+//	===== philosophers =====
+# include "colors.h"
 # include "utils.h"
 # include "engine.h"
 
