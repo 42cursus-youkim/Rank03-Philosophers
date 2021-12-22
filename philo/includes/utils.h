@@ -1,11 +1,11 @@
 #ifndef UTILS_H
 # define UTILS_H
 
-typedef enum e_flag
+typedef enum e_res
 {
 	OK = 0,
 	ERR = -1,
-}	t_flag;
+}	t_res;
 
 typedef enum e_in_usec
 {
@@ -20,7 +20,8 @@ typedef void *(*routine)(void *arg);
 /*
 ** < util_thread.c > */
 
-int		new_thread(pthread_t *pthread, routine func, void *arg);
+t_res	new_thread(pthread_t *pthread, routine func, void *arg);
+void	*p_function(void *data);
 /*
 ** < util_time.c > */
 

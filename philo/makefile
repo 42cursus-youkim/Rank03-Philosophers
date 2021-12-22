@@ -6,7 +6,7 @@
 #    By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 14:12:20 by youkim            #+#    #+#              #
-#    Updated: 2021/12/21 18:09:13 by youkim           ###   ########.fr        #
+#    Updated: 2021/12/22 12:38:49 by youkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ RM       := rm -rf
 # ===== Packages =====
 PKGS     := engine utils
 engineV  := philo
-utilsV   := util_time
+utilsV   := util_time util_thread
 
 # ===== Macros =====
 define choose_modules

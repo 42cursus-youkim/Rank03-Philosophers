@@ -5,7 +5,7 @@ size_t	getmsec(void)
 	struct timeval	tv;
 
 	gettimeofday(&tv, NULL);
-	return (tv.tv_sec * sec_in_mili) + (tv.tv_usec / mili_in_usec);
+	return ((tv.tv_sec * sec_in_mili) + (tv.tv_usec / mili_in_usec));
 }
 
 //	diff in time in miliseconds
