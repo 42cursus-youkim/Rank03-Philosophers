@@ -23,8 +23,8 @@ typedef void *(*t_routine_f)(void *arg);
 /*
 ** < ythread.c > */
 
-t_res	new_thread(pthread_t *pthread, t_routine_f func, void *arg);
-t_res	new_mutex(pthread_mutex_t *mutex);
+t_res	init_thread(pthread_t *pthread, t_routine_f func, void *arg);
+void	init_mutex(pthread_mutex_t *mutex);
 void	*p_function(void *data);
 /*
 ** < ytime.c > */
@@ -35,7 +35,7 @@ void	msleep(size_t ms);
 /*
 ** < yutils.c > */
 
-void	yerror(const char *msg);
+void	yerror(const char *msg, const char *value);
 void	yassert(const bool cond, const char *msg);
 t_res	yatoui(const char *str, int *n);
 void	*ymalloc(const size_t size);

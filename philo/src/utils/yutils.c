@@ -1,15 +1,16 @@
 #include "philosophers.h"
 
-void	yerror(const char *msg)
+
+void	yerror(const char *msg, const char *value)
 {
-	printf("%s[Error]\n\t%s%s\n", BHRED, msg, END);
+	printf("%s[Error]\n\t%s: %s%s\n", BHRED, msg, value, END);
 	exit(EXIT_FAILURE);
 }
 
 void	yassert(const bool cond, const char *msg)
 {
 	if (!cond)
-		yerror(msg);
+		yerror(msg, "");
 }
 
 t_res	yatoui(const char *str, int *n)
