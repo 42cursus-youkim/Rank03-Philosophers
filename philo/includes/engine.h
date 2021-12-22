@@ -37,5 +37,9 @@ typedef struct s_engine
 
 void	init_flag(t_engine *e, const int argc, const char *argv[]);
 void	init_engine(t_engine *e);
+/*
+** < philo.c > */
+
+void	init_philosopher(t_engine *e, int id, t_philo *philo);
 //	@end
 #endif

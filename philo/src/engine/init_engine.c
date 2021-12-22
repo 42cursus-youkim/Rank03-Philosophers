@@ -24,22 +24,15 @@ void	init_flag(t_engine *e, const int argc, const char *argv[])
 
 void	init_engine(t_engine *e)
 {
-	int	i;
+	int	id;
 
 	gettimeofday(&e->start_time, NULL);
 	e->philos = ymalloc((e->flag[num_philos] + 1) * sizeof(t_philo));
 	e->forks = ymalloc((e->flag[num_philos] + 1) * sizeof(pthread_mutex_t));
-	i = 0;
-	while (++i <= e->flag[num_philos])
+	id = 0;
+	while (++id <= e->flag[num_philos])
 	{
-		e->philos[i].e = e;
-		e->philos[i].id = i;
-		e->philos[i].left = &e->forks[i];
-		if (i == e->flag[num_philos])
-			e->philos[i].right = &e->forks[1];
-		else
-			e->philos[i].right = &e->forks[i + 1];
-		pthread_mutex_init(&e->forks[i], NULL);
+		init_philosopher(e, id ,&e->philos[id]);
 	}
 
 }
