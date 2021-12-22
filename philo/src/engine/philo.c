@@ -1,21 +1,46 @@
 #include "philosophers.h"
 
-void	print_msg(t_philo *philo, char *str)
+static void	pickup_fork(t_philo *philo)
 {
-	const size_t	ms = msec_diff(philo->e);
-
-	pthread_mutex_lock(&philo->e->available);
-	printf("%zu\t%d\t%s\n", ms, philo->id, str);
-	pthread_mutex_unlock(&philo->e->available);
+	pthread_mutex_lock(philo->right);
+	print_msg(philo, "has taken a fork");
+	pthread_mutex_lock(philo->left);
+	print_msg(philo, "has taken a fork");
 }
 
-size_t	msec_diff(t_engine *e)
+static void	eat(t_philo *philo)
 {
-	struct timeval	now;
-	size_t			diff;
+	print_msg(philo, "is eating");
+	msleep(philo->e->flag[time_to_eat]);
+	pthread_mutex_unlock(philo->left);
+	pthread_mutex_unlock(philo->right);
+	philo->eats++;
+}
 
-	gettimeofday(&now, NULL);
-	diff = (now.tv_sec - e->start_time.tv_sec) * sec_in_mili;
-	diff += (now.tv_usec - e->start_time.tv_usec) / mili_in_usec;
-	return (diff);
+static void	go_sleep(t_philo *philo)
+{
+	print_msg(philo, "is sleeping");
+	msleep(philo->e->flag[time_to_sleep]);
+}
+
+static void	think(t_philo *philo)
+{
+	print_msg(philo, "is thinking");
+}
+
+void	*routine(void *arg)
+{
+	t_philo	*philo;
+
+	philo = arg;
+	if (philo->id % 2)
+		msleep(philo->e->flag[time_to_eat]);
+	while (philo->e->is_running)
+	{
+		pickup_fork(philo);
+		eat(philo);
+		go_sleep(philo);
+		think(philo);
+	}
+	return (NULL);
 }

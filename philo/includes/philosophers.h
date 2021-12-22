@@ -15,7 +15,7 @@
 # include <pthread.h>
 
 //	===== philosophers =====
-# include "utils.h"
 # include "engine.h"
+# include "utils.h"
 
 #endif

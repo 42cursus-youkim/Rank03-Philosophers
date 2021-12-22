@@ -65,7 +65,7 @@ fclean: clean
 re: fclean all
 
 # ===== Test =====
-TEST := ./$(NAME) 3 100 50 50 3
+TEST := ./$(NAME) 3 410 200 200 3
 test: docs all cls
 	@$(call log, Y, Running Test...)
 	@$(TEST)

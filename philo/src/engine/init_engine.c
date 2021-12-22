@@ -34,8 +34,7 @@ void	run_engine(t_engine *e)
 
 	id = 0;
 	while (++id <= e->flag[num_philos])
-		pthread_create(&e->philos[id].thread, NULL,
-						p_function, &e->philos[id]);
+		init_thread(&e->philos[id].thread, routine, &e->philos[id]);
 	id = 0;
 	while (++id <= e->flag[num_philos])
 		pthread_join(e->philos[id].thread, NULL);

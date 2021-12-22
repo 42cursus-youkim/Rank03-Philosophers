@@ -1,15 +1,6 @@
 #ifndef ENGINE_H
 # define ENGINE_H
 
-typedef enum e_flag
-{
-	num_philos = 0,
-	time_to_die,
-	time_to_eat,
-	time_to_sleep,
-	nums_need_eat,
-}	t_flag;
-
 typedef struct s_philo
 {
 	int				id;
@@ -25,13 +16,14 @@ typedef struct s_philo
 typedef struct s_engine
 {
 	int				flag[5];
-	bool			is_done;
 	pthread_mutex_t	*forks;
 	t_philo			*philos;
-	struct timeval	start_time;
 	pthread_mutex_t	available;
+	struct timeval	start_time;
+	bool			is_running;
 }	t_engine;
 
+typedef void *(*t_routine_f)(void *arg);
 //	@func
 /*
 ** < checks.c > */
@@ -51,7 +43,6 @@ void	run_engine(t_engine *e);
 /*
 ** < philo.c > */
 
-void	print_msg(t_philo *philo, char *str);
-size_t	msec_diff(t_engine *e);
+void	*routine(void *arg);
 //	@end
 #endif

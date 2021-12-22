@@ -1,5 +1,14 @@
 #include "philosophers.h"
 
+void	print_msg(t_philo *philo, char *str)
+{
+	const size_t	ms = msec_diff(philo->e);
+
+	pthread_mutex_lock(&philo->e->available);
+	printf("%zu\t%d\t%s\n", ms, philo->id, str);
+	pthread_mutex_unlock(&philo->e->available);
+}
+
 void	yerror(const char *msg, const char *value)
 {
 	printf("%s[Error]\n\t%s: %s%s\n", BHRED, msg, value, END);

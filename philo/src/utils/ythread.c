@@ -14,9 +14,8 @@ void	*p_function(void *data)
 {
 	int		i;
 	t_philo	*philo;
-	// const pthread_t	tid = pthread_self();
 
-	philo = (t_philo *)data;
+	philo = data;
 	i = -1;
 	while (++i < 100)
 	{
