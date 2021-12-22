@@ -25,8 +25,8 @@ RM       := rm -rf
 
 # ===== Packages =====
 PKGS     := engine utils
-engineV  := philo
-utilsV   := util_time util_thread
+engineV  := philosophers
+utilsV   := ytime ythread yutils
 
 # ===== Macros =====
 define choose_modules

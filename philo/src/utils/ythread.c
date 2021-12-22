@@ -27,6 +27,7 @@ void	*p_function(void *data)
 	const char		*name = data;
 	const pthread_t	tid = pthread_self();
 
+	i = -1;
 	while (++i < max)
 	{
 		printf("<%s> tid : %x (%d/%d)\n",
