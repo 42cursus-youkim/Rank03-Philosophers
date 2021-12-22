@@ -11,6 +11,7 @@ typedef enum e_flag
 	time_to_eat,
 	time_to_sleep,
 	nums_need_eat,
+	nums_philos_finished_eat,
 }	t_flag;
 
 typedef enum e_res

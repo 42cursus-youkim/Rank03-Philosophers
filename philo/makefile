@@ -22,7 +22,7 @@ INC      := -I includes/
 DFLAGS	 := -g3 -DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address"
 
 RM       := rm -rf
-
+TEST     := ./$(NAME) 2 410 200 200 3 #philos death eat sleep
 # ===== Packages =====
 PKGS     := engine philo utils
 engineV  := main checks init_engine del_engine
@@ -66,7 +66,6 @@ fclean: clean
 re: fclean all
 
 # ===== Test =====
-TEST := ./$(NAME) 2 410 200 200 3 #philos death eat sleep
 test: docs all cls
 	@$(call log, Y, Running Test...)
 	@$(TEST)

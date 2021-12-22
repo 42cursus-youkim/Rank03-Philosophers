@@ -1,23 +1,11 @@
 #ifndef ENGINE_H
 # define ENGINE_H
 
-typedef struct s_philo
-{
-	int				id;
-	int				eats;
-	pthread_t		thread;
-	pthread_mutex_t	*left;
-	pthread_mutex_t	*right;
-	pthread_mutex_t	lock;
-	struct s_engine	*e;
-	struct timeval	last_eat;
-}	t_philo;
-
 typedef struct s_engine
 {
-	int				flag[5];
+	int				flag[6];
 	pthread_mutex_t	*forks;
-	t_philo			*philos;
+	struct s_philo	*philos;
 	pthread_mutex_t	available;
 	struct timeval	start_time;
 	bool			is_running;

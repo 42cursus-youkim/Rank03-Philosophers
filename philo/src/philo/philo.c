@@ -14,7 +14,8 @@ static void	eat(t_philo *philo)
 	msleep(philo->e->flag[time_to_eat]);
 	pthread_mutex_unlock(philo->left);
 	pthread_mutex_unlock(philo->right);
-	philo->eats++;
+	if (++philo->eats == philo->e->flag[nums_need_eat])
+		philo->e->flag[nums_philos_finished_eat]++;
 }
 
 static void	go_sleep(t_philo *philo)
@@ -35,7 +36,7 @@ void	*routine(void *arg)
 	philo = arg;
 	if (philo->id % 2)
 		msleep(philo->e->flag[time_to_eat]);
-	while (philo->e->is_running)
+	while (true)
 	{
 		pickup_fork(philo);
 		eat(philo);

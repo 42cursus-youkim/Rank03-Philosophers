@@ -9,6 +9,7 @@ void	init_philosopher(t_engine *e, int id, t_philo *philo)
 		philo->right = &e->forks[1];
 	else
 		philo->right = &e->forks[id + 1];
+	philo->last_eat = e->start_time;
 	init_mutex(&philo->lock);
 }
 
@@ -36,7 +37,10 @@ void	run_engine(t_engine *e)
 
 	id = 0;
 	while (++id <= e->flag[num_philos])
+	{
 		init_thread(&e->philos[id].thread, routine, &e->philos[id]);
+		// pthread_detach(e->philos[id].thread);
+	}
 	id = 0;
 	while (++id <= e->flag[num_philos])
 		pthread_join(e->philos[id].thread, NULL);
