@@ -24,3 +24,13 @@ t_res	yatoui(const char *str, int *n)
 		(*n) = (*n) * 10 + (str[i++] - '0');
 	return (OK);
 }
+
+//	no NULL-termination, use new_ystr* for that
+void	*ymalloc(const size_t size)
+{
+	void	*ptr;
+
+	ptr = malloc(size);
+	yassert(ptr, "malloc failed");
+	return (ptr);
+}

@@ -13,22 +13,29 @@ typedef enum e_flag
 typedef struct s_philo
 {
 	int				id;
-	// int				to_eat;
+	int				eats;
+	pthread_t		thread;
 	pthread_mutex_t	*left;
 	pthread_mutex_t	*right;
+	pthread_mutex_t	*available;
+	struct timeval	last_eat;
+	struct s_engine	*e;
 }	t_philo;
 
 typedef struct s_engine
 {
 	int				flag[5];
 	pthread_mutex_t	*forks;
-	t_philo			*philosophers;
+	t_philo			*philos;
+	struct timeval	start_time;
+	pthread_mutex_t	*engine_available;
 }	t_engine;
 
 //	@func
 /*
 ** < init_engine.c > */
 
-void	init_engine(t_engine *e, const int argc, const char *argv[]);
+void	init_flag(t_engine *e, const int argc, const char *argv[]);
+void	init_engine(t_engine *e);
 //	@end
 #endif

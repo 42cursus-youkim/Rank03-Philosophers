@@ -68,7 +68,7 @@ re: fclean all
 TEST := ./$(NAME)
 test: docs all cls
 	@$(call log, Y, Running Test...)
-	@$(TEST)
+	@$(TEST) 1 100 50 50 3
 	@$(call log, G, Ended Test)
 
 # ===== Valgrind =====
