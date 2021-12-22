@@ -27,7 +27,7 @@ TEST     := ./$(NAME) 2 410 200 200 3 #philos death eat sleep
 PKGS     := engine philo utils
 engineV  := main checks init_engine del_engine
 philoV   := philo manager
-utilsV   := ytime ythread ymutex yutils
+utilsV   := ytime ythread yutils
 
 # ===== Macros =====
 define choose_modules

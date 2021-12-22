@@ -2,23 +2,21 @@
 
 void	print_msg(t_philo *philo, char *str)
 {
-	const size_t	ms = msec_diff(philo->e);
-
 	pthread_mutex_lock(&philo->e->available);
-	printf("%zu\t%d\t%s\n", ms, philo->id, str);
+	printf("%zu\t%d\t%s\n", msec_diff(philo->e), philo->id, str);
 	pthread_mutex_unlock(&philo->e->available);
 }
 
-void	yerror(const char *msg, const char *value)
+void	yerror(const char *msg)
 {
-	printf("%s[Error]\n\t%s: %s%s\n", BHRED, msg, value, END);
+	printf("%s[Error]\n\t%s%s\n", BHRED, msg, END);
 	exit(EXIT_FAILURE);
 }
 
 void	yassert(const bool cond, const char *msg)
 {
 	if (!cond)
-		yerror(msg, "");
+		yerror(msg);
 }
 
 t_res	yatoui(const char *str, int *n)

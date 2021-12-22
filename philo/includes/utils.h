@@ -29,14 +29,11 @@ typedef enum e_in_usec
 
 //	@func
 /*
-** < ymutex.c > */
-
-void	init_mutex(pthread_mutex_t *mutex);
-/*
 ** < ythread.c > */
 
-t_res	init_thread(pthread_t *pthread, t_routine_f func, void *arg);
-void	*p_function(void *data);
+void	init_thread(pthread_t *pthread, t_routine_f func, void *arg);
+void	init_thread_detached(pthread_t *pthread, t_routine_f func, void *arg);
+void	init_mutex(pthread_mutex_t *mutex);
 /*
 ** < ytime.c > */
 
@@ -47,7 +44,7 @@ size_t	msec_diff(t_engine *e);
 ** < yutils.c > */
 
 void	print_msg(t_philo *philo, char *str);
-void	yerror(const char *msg, const char *value);
+void	yerror(const char *msg);
 void	yassert(const bool cond, const char *msg);
 t_res	yatoui(const char *str, int *n);
 void	*ymalloc(const size_t size);
