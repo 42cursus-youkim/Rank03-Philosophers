@@ -21,16 +21,18 @@ typedef void *(*t_routine_f)(void *arg);
 
 //	@func
 /*
+** < ymutex.c > */
+
+void	init_mutex(pthread_mutex_t *mutex);
+/*
 ** < ythread.c > */
 
 t_res	init_thread(pthread_t *pthread, t_routine_f func, void *arg);
-void	init_mutex(pthread_mutex_t *mutex);
 void	*p_function(void *data);
 /*
 ** < ytime.c > */
 
-size_t	getmsec(void);
-size_t	timediff(size_t start);
+size_t	getusec(void);
 void	msleep(size_t ms);
 /*
 ** < yutils.c > */

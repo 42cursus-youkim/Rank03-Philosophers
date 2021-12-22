@@ -25,6 +25,7 @@ typedef struct s_philo
 typedef struct s_engine
 {
 	int				flag[5];
+	bool			is_done;
 	pthread_mutex_t	*forks;
 	t_philo			*philos;
 	struct timeval	start_time;
@@ -46,5 +47,11 @@ void	del_engine(t_engine *e);
 
 void	init_philosopher(t_engine *e, int id, t_philo *philo);
 void	init_engine(t_engine *e, const int argc, const char *argv[]);
+void	run_engine(t_engine *e);
+/*
+** < philo.c > */
+
+void	print_msg(t_philo *philo, char *str);
+size_t	msec_diff(t_engine *e);
 //	@end
 #endif

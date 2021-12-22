@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 # ===== Target & FLAGS =====
-NAME     := philosophers
+NAME     := philo
 
 CC       := gcc
 CFLAGS   := -Wall -Wextra -Werror
@@ -26,7 +26,7 @@ RM       := rm -rf
 # ===== Packages =====
 PKGS     := engine utils
 engineV  := main checks philo init_engine del_engine
-utilsV   := ytime ythread yutils
+utilsV   := ytime ythread ymutex yutils
 
 # ===== Macros =====
 define choose_modules
@@ -65,7 +65,7 @@ fclean: clean
 re: fclean all
 
 # ===== Test =====
-TEST := ./$(NAME) 1 100 50 50 3
+TEST := ./$(NAME) 3 100 50 50 3
 test: docs all cls
 	@$(call log, Y, Running Test...)
 	@$(TEST)

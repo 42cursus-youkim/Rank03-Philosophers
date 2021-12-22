@@ -20,4 +20,6 @@ void	init_flag(t_engine *e, const int argc, const char *argv[])
 		yassert(yatoui(argv[i + 1], &e->flag[i]) == OK,
 			"cannot convert argument to non-negative integer");
 	yassert(e->flag[num_philos] > 0, "number of philosophers must be positive");
+	gettimeofday(&e->start_time, NULL);
+	e->is_done = false;
 }

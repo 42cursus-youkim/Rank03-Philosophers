@@ -10,32 +10,20 @@ t_res	init_thread(pthread_t *pthread, t_routine_f func, void *arg)
 	exit(EXIT_FAILURE);
 }
 
-void	init_mutex(pthread_mutex_t *mutex)
-{
-	int			i;
-	const int	res = pthread_mutex_init(mutex, NULL);
-	const int	errors[2] = {EINVAL, EDEADLK};
-	const char	*err_msg[] = {"invalid value", "deadlock!"};
-
-	i = -1;
-	while (++i < 2)
-		if (res == errors[i])
-			yerror("mutex initialization failed", err_msg[i]);
-}
-
 void	*p_function(void *data)
 {
-	int				i;
-	const int		max = 3;
-	const char		*name = data;
-	const pthread_t	tid = pthread_self();
+	int		i;
+	t_philo	*philo;
+	// const pthread_t	tid = pthread_self();
 
+	philo = (t_philo *)data;
 	i = -1;
-	while (++i < max)
+	while (++i < 100)
 	{
-		printf("<%s> tid : %x (%d/%d)\n",
-			name, (unsigned int)tid, i, max);
-		usleep(1000 * 1000);
+		print_msg(philo, "says hi");
+		msleep(100);
 	}
-	return ((void *)12345);
+	if (data || !data)
+		return ((void *)12345);
+	return (NULL);
 }

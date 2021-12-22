@@ -1,6 +1,5 @@
 #include "philosophers.h"
 
-
 void	yerror(const char *msg, const char *value)
 {
 	printf("%s[Error]\n\t%s: %s%s\n", BHRED, msg, value, END);
