@@ -27,9 +27,8 @@ typedef struct s_engine
 
 //	@func
 /*
-** < philosophers.c > */
+** < init_engine.c > */
 
-void	check_argc(const int argc);
 void	init_engine(t_engine *e, const int argc, const char *argv[]);
 //	@end
 #endif
