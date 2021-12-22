@@ -6,5 +6,6 @@ int	main(const int argc, const char *argv[])
 
 	init_flag(&e, argc, argv);
 	init_engine(&e);
+	del_engine(&e);
 	return (0);
 }

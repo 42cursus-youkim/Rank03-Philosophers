@@ -9,5 +9,4 @@ void	init_philosopher(t_engine *e, int id, t_philo *philo)
 		philo->right = &e->forks[1];
 	else
 		philo->right = &e->forks[id + 1];
-	pthread_mutex_init(&e->forks[id], NULL);
 }

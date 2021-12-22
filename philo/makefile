@@ -65,18 +65,18 @@ fclean: clean
 re: fclean all
 
 # ===== Test =====
-TEST := ./$(NAME)
+TEST := ./$(NAME) 1 100 50 50 3
 test: docs all cls
 	@$(call log, Y, Running Test...)
-	@$(TEST) 1 100 50 50 3
+	@$(TEST)
 	@$(call log, G, Ended Test)
 
 # ===== Valgrind =====
 VFLAGS := --leak-check=full --show-leak-kinds=all \
 			--track-origins=yes --show-reachable=no \
-			--suppressions=./libft/macos.supp
+			# --suppressions=./libft/macos.supp
 VSFLAGS := --show-reachable=yes --error-limit=no --gen-suppressions=all \
-			# --log-file=./mlx.supp
+			--log-file=./mlx.supp
 leak: docs all cls
 	@$(call log, Y, Running Leak Test,...)
 	@colour-valgrind $(VFLAGS) $(TEST)
