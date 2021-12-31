@@ -16,26 +16,24 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      - uses: actions/cache@v2
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
+      # - uses: actions/cache@v2
+      #   with:
+      #     path: ~/.cache/pip
+      #     key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-pip-
 
       - uses: actions/setup-python@v2
         with:
           python-version: '3.8'
 
+      - name: 🐍 install dependencies
+        run: pip install norminette
+
       - name: check pip
-        run: pip freeze
-
-      - name: Run a one-line script
-        run: echo ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-
-      - name: Run a multi-line script
         run: |
-          ls -al
-          git status
-          git branch -v
-          git remote -v
+          pip freeze
+          pip list
+
+      - name: 🧪 check norminette
+        run: norminette **/*.c **/*.h
