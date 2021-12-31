@@ -10,29 +10,34 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
-      - name: 📃 create requirements.txt
-        run: echo "norminette==3.3.51" >> requirements.txt
-
-      - uses: actions/cache@v2
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-
       - uses: actions/setup-python@v2
         with:
           python-version: '3.8'
 
       - name: 🐍 install dependencies
-        run: pip install norminette
+        run: |
+          pip install norminette
 
-      - name: 🧪 check norminette
+      - name: 🧪 run test
         run: |
           norminette || exit 1
 
+  deploy:
+    # needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: master
+
+      - name: clean
+        run: |
+
+      - name: 🚀 deploy
+        run: |
+          git add .
+          git commit -m "deploy"
