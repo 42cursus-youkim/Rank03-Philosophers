@@ -27,6 +27,9 @@ jobs:
         with:
           python-version: '3.8'
 
+      - name: check pip
+        run: pip freeze
+
       - name: Run a one-line script
         run: echo ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
 
