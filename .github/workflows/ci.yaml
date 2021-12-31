@@ -30,14 +30,29 @@ jobs:
     # needs: test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Create/Update master branch
+        uses: julb/action-manage-branch@v1
         with:
-          ref: master
+          name: master
+          state: present
+          from: ${{ github.ref }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: clean
-        run: |
+      # - uses: actions/checkout@v2
+      #   with:
+      #     ref: master
 
-      - name: 🚀 deploy
-        run: |
-          git add .
-          git commit -m "deploy"
+      # - name: clean
+      #   run: |
+      #     rm -rf ./**/*.{txt,out,md}
+      #     rm -rf ./**/*/{LICENSE.*, README.*}
+      #     rm -rf ./**/*/{LICENSE, README}
+
+      # - name: 🚀 deploy
+      #   run: |
+      #     git config user.name github-actions
+      #     git config user.email github-actions@github.com
+      #     git add .
+      #     git commit -m "ci: :rocket: deploy assignment"
+      #     git push
