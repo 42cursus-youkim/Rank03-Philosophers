@@ -11,14 +11,24 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
 
       - name: Run a one-line script
-        run: echo Hello, world!
+        run: echo ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
 
       - name: Run a multi-line script
         run: |
