@@ -14,7 +14,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       # - uses: actions/cache@v2
       #   with:
@@ -36,4 +35,6 @@ jobs:
           pip list
 
       - name: 🧪 check norminette
-        run: norminette **/*.c **/*.h
+        run: |
+          norminette || exit 1
+
