@@ -23,5 +23,6 @@ jobs:
       - name: Run a multi-line script
         run: |
           ls -al
+          git status
           git branch -v
           git remote -v
