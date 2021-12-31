@@ -30,28 +30,35 @@ jobs:
     # needs: test
     runs-on: ubuntu-latest
     steps:
-      - name: 🔀 create/update master branch
-        uses: julb/action-manage-branch@v1
-        with:
-          name: master
-          state: present
-          from: ${{ github.ref }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # - uses: actions/checkout@v2
+      # - name: 🔀 create/update master branch
+      #   uses: julb/action-manage-branch@v1
       #   with:
-      #     ref: master
+      #     name: master
+      #     state: present
+      #     from: ${{ github.ref }}
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: 🧹 clean
-        run: |
-          rm -rf ./**/*.{txt,out,md}
-          rm -rf ./**/*/{LICENSE, README}
+      - uses: actions/checkout@v2
+        with:
+          ref: master
+
+      # - name: 🧹 clean
+      #   run: |
+      #     rm -rf ./**/*.{txt,out,md}
+      #     rm -rf ./**/*/{LICENSE, README}
 
       - name: 🚀 deploy
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add .
-          git commit -m "ci: :rocket: deploy assignment"
-          git push
+        uses: EndBug/add-and-commit@v7
+        with:
+          branch: master
+          branch_mode: create
+          default_author: github_actions
+          remove: '[**/*.{txt,md,out,gch}, README, LICENSE]'
+
+        # run: |
+        #   git config user.name github-actions
+        #   git config user.email github-actions@github.com
+        #   git add .
+        #   git commit -m "ci: :rocket: deploy assignment"
+        #   git push
