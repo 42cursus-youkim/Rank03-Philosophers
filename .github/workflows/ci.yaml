@@ -30,6 +30,18 @@ jobs:
     # needs: test
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: master
+
+      - name: 🚀 deploy
+        uses: EndBug/add-and-commit@v7
+        with:
+          branch: master
+          branch_mode: create
+          default_author: github_actions
+          remove: '["README", "LICENSE", "**/*.{txt,md,out,gch}"]'
+     
       # - name: 🔀 create/update master branch
       #   uses: julb/action-manage-branch@v1
       #   with:
@@ -39,22 +51,13 @@ jobs:
       #   env:
       #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: actions/checkout@v2
-        with:
-          ref: master
+
 
       # - name: 🧹 clean
       #   run: |
       #     rm -rf ./**/*.{txt,out,md}
       #     rm -rf ./**/*/{LICENSE, README}
 
-      - name: 🚀 deploy
-        uses: EndBug/add-and-commit@v7
-        with:
-          branch: master
-          branch_mode: create
-          default_author: github_actions
-          remove: '[**/*.{txt,md,out,gch}, README, LICENSE]'
 
         # run: |
         #   git config user.name github-actions
