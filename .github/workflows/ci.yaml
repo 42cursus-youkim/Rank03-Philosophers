@@ -10,21 +10,21 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
-        with:
-          python-version: '3.8'
+  # test:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - uses: actions/setup-python@v2
+  #       with:
+  #         python-version: '3.8'
 
-      - name: 🐍 install dependencies
-        run: |
-          pip install norminette
+  #     - name: 🐍 install dependencies
+  #       run: |
+  #         pip install norminette
 
-      - name: 🧪 run test
-        run: |
-          norminette || exit 1
+  #     - name: 🧪 run test
+  #       run: |
+  #         norminette || exit 1
 
   deploy:
     # needs: test
@@ -40,8 +40,11 @@ jobs:
           branch: master
           branch_mode: create
           default_author: github_actions
-          remove: '["README", "LICENSE", "**/*.{txt,md,out,gch}"]'
-     
+          remove: >
+            '["README", "LICENSE",
+            "**/*.txt", "**/*.md",
+            "**/*.out", "**/*.gch"]'
+
       # - name: 🔀 create/update master branch
       #   uses: julb/action-manage-branch@v1
       #   with:
