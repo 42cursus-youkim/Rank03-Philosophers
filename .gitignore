@@ -1,5 +1,6 @@
 # Project
 philo/philo
+.venv
 
 # Prerequisites
 *.d

@@ -29,17 +29,17 @@ typedef enum e_in_usec
 
 //	@func
 /*
-** < ythread.c > */
-
-void	init_thread(pthread_t *pthread, t_routine_f func, void *arg);
-void	init_thread_detached(pthread_t *pthread, t_routine_f func, void *arg);
-void	init_mutex(pthread_mutex_t *mutex);
-/*
 ** < ytime.c > */
 
 size_t	getusec(void);
 void	msleep(size_t ms);
 size_t	msec_diff(t_engine *e);
+/*
+** < ythread.c > */
+
+void	init_thread(pthread_t *pthread, t_routine_f func, void *arg);
+void	init_thread_detached(pthread_t *pthread, t_routine_f func, void *arg);
+void	init_mutex(pthread_mutex_t *mutex);
 /*
 ** < yutils.c > */
 
