@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+         #
+#    By: scarf < youkim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 14:12:20 by youkim            #+#    #+#              #
-#    Updated: 2021/12/22 12:38:49 by youkim           ###   ########.fr        #
+#    Updated: 2022/01/12 11:16:41 by scarf            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 NAME     := philo
 
 CC       := gcc
-CFLAGS   := -Wall -Wextra -Werror
+CFLAGS   := -Wall -Wextra -Werror #-O3
 
 PRE      := src/
 INC      := -I includes/
@@ -22,12 +22,12 @@ INC      := -I includes/
 DFLAGS	 := -g3 -DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address"
 
 RM       := rm -rf
-TEST     := ./$(NAME) 2 410 200 200 3 #philos death eat sleep
+TEST     := ./$(NAME) 2 410 200 100 3 #philos death eat sleep end
 # ===== Packages =====
 PKGS     := engine philo utils
 engineV  := main checks init_engine del_engine
 philoV   := philo manager
-utilsV   := ytime ythread yutils
+utilsV   := ytime ythread yutils ylogging
 
 # ===== Macros =====
 define choose_modules
@@ -70,6 +70,14 @@ test: docs all cls
 	@$(call log, Y, Running Test...)
 	@$(TEST)
 	@$(call log, G, Ended Test)
+
+log: docs all cls
+	@$(call log, Y, Logging Test...)
+	@$(TEST) | sed -r "s/\x1B\[[0-9;]*[JKmsu]//g" > res.txt
+	@python3 ./fix.py
+	@cat res.txt
+	@echo
+	@$(call log, G, Ended Logging)
 
 # ===== Valgrind =====
 VFLAGS := --leak-check=full --show-leak-kinds=all \

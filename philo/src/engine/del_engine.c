@@ -1,10 +1,15 @@
 #include "philosophers.h"
 
+bool	is_everyone_finished_eat(t_engine *e)
+{
+	return (e->flag[nums_philos_finished_eat] == e->flag[num_philos]);
+}
+
 void	del_engine(t_engine *e)
 {
 	int	id;
 
-	// pthread_mutex_destroy(&e->available);
+	pthread_mutex_destroy(&e->lock);
 	id = 0;
 	while (++id <= e->flag[num_philos])
 	{

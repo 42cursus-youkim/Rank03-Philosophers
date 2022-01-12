@@ -27,6 +27,7 @@ void	init_flag(t_engine *e, const int argc, const char *argv[]);
 /*
 ** < del_engine.c > */
 
+bool	is_everyone_finished_eat(t_engine *e);
 void	del_engine(t_engine *e);
 //	@end
 #endif

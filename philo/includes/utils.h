@@ -43,10 +43,13 @@ void	init_mutex(pthread_mutex_t *mutex);
 /*
 ** < yutils.c > */
 
-void	print_msg(t_philo *philo, t_state state);
 void	yerror(const char *msg);
 void	yassert(const bool cond, const char *msg);
 t_res	yatoui(const char *str, int *n);
 void	*ycalloc(const size_t size);
+/*
+** < ylogging.c > */
+
+void	print_msg(t_philo *philo, t_state state);
 //	@end
 #endif

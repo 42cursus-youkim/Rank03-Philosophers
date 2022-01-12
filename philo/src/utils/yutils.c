@@ -1,19 +1,5 @@
 #include "philosophers.h"
 
-void	print_msg(t_philo *philo, t_state state)
-{
-	const char *msgcolor[5] = {HCYN, GRN, HMAG, YEL, HRED};
-	const char *msg[5] = {
-		"has taken a fork", "is eating", "is sleeping",
-		"is thinking", "is dead"
-	};
-
-	pthread_mutex_lock(&philo->e->lock);
-	printf("%zu\t%d\t%s%s%s\n",
-		msec_diff(philo->e), philo->id, msgcolor[state], msg[state], END);
-	pthread_mutex_unlock(&philo->e->lock);
-}
-
 void	yerror(const char *msg)
 {
 	printf("%s[Error]\n\t%s%s\n", BHRED, msg, END);

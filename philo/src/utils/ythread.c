@@ -17,7 +17,7 @@ void	init_thread_detached(pthread_t *pthread, t_routine_f func, void *arg)
 	res = pthread_detach(*pthread);
 	if (res == OK)
 		return ;
-	yerror("could not detach thread");;
+	yerror("could not detach thread");
 }
 
 void	init_mutex(pthread_mutex_t *mutex)
