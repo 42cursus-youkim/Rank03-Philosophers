@@ -2,9 +2,9 @@
 # define PHILOSOPHERS_H
 
 //	===== utils =====
-# include <errno.h>
 # include <stdbool.h>
 # include <stdlib.h>
+# include <string.h>
 # include <sys/time.h>
 
 //	===== logging =====
@@ -18,5 +18,6 @@
 # include "philo.h"
 # include "engine.h"
 # include "utils.h"
+# include "colors.h"
 
 #endif

@@ -2,13 +2,15 @@
 
 void	print_msg(t_philo *philo, t_state state)
 {
+	const char *msgcolor[5] = {HCYN, GRN, HMAG, YEL, HRED};
 	const char *msg[5] = {
 		"has taken a fork", "is eating", "is sleeping",
 		"is thinking", "is dead"
 	};
 
 	pthread_mutex_lock(&philo->e->lock);
-	printf("%zu\t%d\t%s\n", msec_diff(philo->e), philo->id, msg[state]);
+	printf("%zu\t%d\t%s%s%s\n",
+		msec_diff(philo->e), philo->id, msgcolor[state], msg[state], END);
 	pthread_mutex_unlock(&philo->e->lock);
 }
 
@@ -37,12 +39,12 @@ t_res	yatoui(const char *str, int *n)
 	return (OK);
 }
 
-//	no NULL-termination, use new_ystr* for that
+//	uses internal memset
 void	*ymalloc(const size_t size)
 {
 	void	*ptr;
 
 	ptr = malloc(size);
 	yassert(ptr, "malloc failed");
-	return (ptr);
+	return memset(ptr, 0, size);
 }
