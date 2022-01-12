@@ -1,10 +1,15 @@
 #include "philosophers.h"
 
-void	print_msg(t_philo *philo, char *str)
+void	print_msg(t_philo *philo, t_state state)
 {
-	pthread_mutex_lock(&philo->e->available);
-	printf("%zu\t%d\t%s\n", msec_diff(philo->e), philo->id, str);
-	pthread_mutex_unlock(&philo->e->available);
+	const char *msg[5] = {
+		"has taken a fork", "is eating", "is sleeping",
+		"is thinking", "is dead"
+	};
+
+	pthread_mutex_lock(&philo->e->lock);
+	printf("%zu\t%d\t%s\n", msec_diff(philo->e), philo->id, msg[state]);
+	pthread_mutex_unlock(&philo->e->lock);
 }
 
 void	yerror(const char *msg)

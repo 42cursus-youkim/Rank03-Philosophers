@@ -20,7 +20,7 @@ void	init_engine(t_engine *e, const int argc, const char *argv[])
 	int	id;
 
 	init_flag(e, argc, argv);
-	init_mutex(&e->available);
+	init_mutex(&e->lock);
 	e->philos = ymalloc((e->flag[num_philos] + 1) * sizeof(t_philo));
 	e->forks = ymalloc((e->flag[num_philos] + 1) * sizeof(pthread_mutex_t));
 	id = 0;

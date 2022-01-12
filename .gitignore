@@ -1,6 +1,8 @@
 # Project
 philo/philo
 .venv
+*.py
+*.txt
 
 # Prerequisites
 *.d

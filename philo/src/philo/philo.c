@@ -3,15 +3,15 @@
 static void	pickup_fork(t_philo *philo)
 {
 	pthread_mutex_lock(philo->right);
-	print_msg(philo, "has taken a fork");
+	print_msg(philo, TAKEFORK);
 	pthread_mutex_lock(philo->left);
-	print_msg(philo, "has taken a fork");
+	print_msg(philo, TAKEFORK);
 }
 
 static void	eat(t_philo *philo)
 {
 	philo->eats++;
-	print_msg(philo, "is eating");
+	print_msg(philo, EATING);
 	msleep(philo->e->flag[time_to_eat]);
 	gettimeofday(&philo->last_eat, NULL);
 	pthread_mutex_unlock(philo->left);
@@ -25,13 +25,13 @@ static void	eat(t_philo *philo)
 
 static void	sleeps(t_philo *philo)
 {
-	print_msg(philo, "is sleeping");
+	print_msg(philo, SLEEPING);
 	msleep(philo->e->flag[time_to_sleep]);
 }
 
 static void	think(t_philo *philo)
 {
-	print_msg(philo, "is thinking");
+	print_msg(philo, THINKING);
 }
 
 void	*routine(void *arg)

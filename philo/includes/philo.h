@@ -1,6 +1,14 @@
 #ifndef PHILO_H
 # define PHILO_H
 
+typedef enum s_state
+{
+	TAKEFORK,
+	EATING,
+	SLEEPING,
+	THINKING,
+	DEAD,
+}	t_state;
 typedef struct s_philo
 {
 	int				id;
