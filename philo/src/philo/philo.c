@@ -10,20 +10,16 @@ static void	pickup_fork(t_philo *philo)
 
 static void	eat(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->lock);
-	philo->eats++;
-	print_msg(philo, EATING);
+	// pthread_mutex_lock(&philo->lock);
 	gettimeofday(&philo->last_eat, NULL);
+	philo->eats++;
+	add_finished_eat(philo);
+	print_msg(philo, EATING);
 	msleep(philo->e->flag[time_to_eat]);
 	pthread_mutex_unlock(philo->left);
 	pthread_mutex_unlock(philo->right);
-	if (philo->eats == philo->e->flag[nums_need_eat])
-		philo->e->flag[nums_philos_finished_eat]++;
-	if (is_everyone_finished_eat(philo->e))
-		philo->e->is_running = false;
-	pthread_mutex_unlock(&philo->lock);
+	// pthread_mutex_unlock(&philo->lock);
 }
-// FIXME: convert to mutex and send to manager
 
 static void	sleeps(t_philo *philo)
 {

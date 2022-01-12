@@ -6,7 +6,7 @@ typedef struct s_engine
 	int				flag[6];
 	pthread_mutex_t	*forks;
 	struct s_philo	*philos;
-	pthread_mutex_t	lock_print;
+	pthread_mutex_t	lock;
 	struct timeval	start_time;
 	bool			is_running;
 }	t_engine;
@@ -28,6 +28,7 @@ void	init_flag(t_engine *e, const int argc, const char *argv[]);
 ** < del_engine.c > */
 
 bool	is_everyone_finished_eat(t_engine *e);
+void	add_finished_eat(t_philo *philo);
 void	del_engine(t_engine *e);
 //	@end
 #endif
