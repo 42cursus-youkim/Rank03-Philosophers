@@ -40,7 +40,7 @@ t_res	yatoui(const char *str, int *n)
 }
 
 //	uses internal memset
-void	*ymalloc(const size_t size)
+void	*ycalloc(const size_t size)
 {
 	void	*ptr;
 

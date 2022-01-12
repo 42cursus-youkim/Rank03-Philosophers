@@ -16,6 +16,7 @@
     "memory": "c",
     "streambuf": "c",
     "typeinfo": "c",
-    "utility": "c"
+    "utility": "c",
+    "cstdlib": "c"
   }
 }
