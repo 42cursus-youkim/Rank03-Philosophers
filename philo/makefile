@@ -6,7 +6,7 @@
 #    By: scarf < youkim@student.42seoul.kr>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/09 14:12:20 by youkim            #+#    #+#              #
-#    Updated: 2022/01/12 11:16:41 by scarf            ###   ########.fr        #
+#    Updated: 2022/01/12 11:46:08 by scarf            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ INC      := -I includes/
 DFLAGS	 := -g3 -DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address"
 
 RM       := rm -rf
-TEST     := ./$(NAME) 2 410 200 100 3 #philos death eat sleep end
+TEST     := ./$(NAME) 1 410 200 100 3 #philos death eat sleep end
 # ===== Packages =====
 PKGS     := engine philo utils
 engineV  := main checks init_engine del_engine

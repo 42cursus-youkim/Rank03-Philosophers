@@ -6,7 +6,7 @@ typedef struct s_engine
 	int				flag[6];
 	pthread_mutex_t	*forks;
 	struct s_philo	*philos;
-	pthread_mutex_t	lock;
+	pthread_mutex_t	lock_print;
 	struct timeval	start_time;
 	bool			is_running;
 }	t_engine;

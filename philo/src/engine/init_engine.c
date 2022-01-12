@@ -20,7 +20,7 @@ void	init_engine(t_engine *e, const int argc, const char *argv[])
 	int	id;
 
 	init_flag(e, argc, argv);
-	init_mutex(&e->lock);
+	init_mutex(&e->lock_print);
 	e->philos = ycalloc((e->flag[num_philos] + 1) * sizeof(t_philo));
 	e->forks = ycalloc((e->flag[num_philos] + 1) * sizeof(pthread_mutex_t));
 	id = 0;
@@ -33,11 +33,13 @@ void	init_engine(t_engine *e, const int argc, const char *argv[])
 
 void	run_engine(t_engine *e)
 {
-	int	id;
+	int			id;
+	pthread_t	temp;
 
 	id = 0;
 	while (++id <= e->flag[num_philos])
 	{
 		init_thread(&e->philos[id].thread, routine, &e->philos[id]);
+		init_thread_detached(&temp, manager, &e->philos[id]);
 	}
 }

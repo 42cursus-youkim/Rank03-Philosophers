@@ -7,8 +7,9 @@ typedef enum s_state
 	EATING,
 	SLEEPING,
 	THINKING,
-	DEAD,
+	DIED,
 }	t_state;
+
 typedef struct s_philo
 {
 	int				id;
@@ -26,4 +27,8 @@ typedef struct s_philo
 ** < philo.c > */
 
 void	*routine(void *arg);
+/*
+** < manager.c > */
+
+void	*manager(void *arg);
 #endif

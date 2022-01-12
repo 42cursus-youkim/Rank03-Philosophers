@@ -13,15 +13,15 @@ static const char	*philocolor(t_philo *philo)
 
 void	print_msg(t_philo *philo, t_state state)
 {
-	const char	*msgcolor[5] = {HCYN, GRN, HMAG, YEL, BLKHB};
+	const char	*msgcolor[5] = {HCYN, GRN, HMAG, YEL, REDB};
 	const char	*msg[5] = {
 		"has taken a fork", "is eating",
 		"is sleeping", "is thinking", "died"
 	};
 
-	pthread_mutex_lock(&philo->e->lock);
+	pthread_mutex_lock(&philo->e->lock_print);
 	printf("%s%-6zu %-3d %s%s%s\n",
-		philocolor(philo), msec_diff(philo->e), philo->id,
+		philocolor(philo), msec_diff(philo->e->start_time), philo->id,
 		msgcolor[state], msg[state], END);
-	pthread_mutex_unlock(&philo->e->lock);
+	pthread_mutex_unlock(&philo->e->lock_print);
 }

@@ -9,7 +9,7 @@ void	del_engine(t_engine *e)
 {
 	int	id;
 
-	pthread_mutex_destroy(&e->lock);
+	pthread_mutex_destroy(&e->lock_print);
 	id = 0;
 	while (++id <= e->flag[num_philos])
 	{

@@ -33,7 +33,7 @@ typedef enum e_in_usec
 
 size_t	getusec(void);
 void	msleep(size_t ms);
-size_t	msec_diff(t_engine *e);
+size_t	msec_diff(struct timeval from);
 /*
 ** < ythread.c > */
 

@@ -17,6 +17,7 @@
     "streambuf": "c",
     "typeinfo": "c",
     "utility": "c",
-    "cstdlib": "c"
+    "cstdlib": "c",
+    "ostream": "c"
   }
 }

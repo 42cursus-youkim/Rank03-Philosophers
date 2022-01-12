@@ -17,13 +17,13 @@ void	msleep(size_t ms)
 		usleep(1);
 }
 
-size_t	msec_diff(t_engine *e)
+size_t	msec_diff(struct timeval from)
 {
 	struct timeval	now;
 	size_t			diff;
 
 	gettimeofday(&now, NULL);
-	diff = (now.tv_sec - e->start_time.tv_sec) * sec_in_mili;
-	diff += (now.tv_usec - e->start_time.tv_usec) / mili_in_usec;
+	diff = (now.tv_sec - from.tv_sec) * sec_in_mili;
+	diff += (now.tv_usec - from.tv_usec) / mili_in_usec;
 	return (diff);
 }
