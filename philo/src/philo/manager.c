@@ -11,6 +11,7 @@ void	*eat_manager(void *arg)
 		if (is_everyone_finished_eat(philo->e))
 			philo->e->is_running = false;
 		pthread_mutex_unlock(&philo->e->lock);
+		msleep(10);
 	}
 	return (NULL);
 }
@@ -29,6 +30,7 @@ void	*death_manager(void *arg)
 			philo->e->is_running = false;
 		}
 		pthread_mutex_unlock(&philo->e->lock);
+		msleep(10);
 	}
 	return (NULL);
 }

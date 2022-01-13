@@ -1,7 +1,7 @@
 # ===== Target & FLAGS =====
 NAME     := philo
 
-CC       := clang
+CC       := gcc
 CFLAGS   := -Wall -Wextra -Werror #-O3
 
 PRE      := src/
@@ -10,7 +10,7 @@ INC      := -I includes/
 DFLAGS	 := -g3 #-DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address"
 
 RM       := rm -rf
-TEST     := ./$(NAME) 3 410 200 200 1 #philos death eat sleep end
+TEST     := ./$(NAME) 1 410 200 200 1 #philos death eat sleep end
 # ===== Packages =====
 PKGS     := engine philo utils
 engineV  := main checks init_engine del_engine
@@ -71,11 +71,16 @@ log: docs all cls
 VFLAGS := --leak-check=full --show-leak-kinds=all \
 			--track-origins=yes --show-reachable=no \
 			# --suppressions=./libft/macos.supp
+HFLAG  := --tool=helgrind
 VSFLAGS := --show-reachable=yes --error-limit=no --gen-suppressions=all \
 			--log-file=./mlx.supp
 leak: docs all cls
 	@$(call log, Y, Running Leak Test,...)
 	@colour-valgrind $(VFLAGS) $(TEST)
+
+tleak:
+	@colour-valgrind $(HFLAG) $(TEST)
+
 supp: docs all cls
 	@$(call log, Y, Creating Leak Suppressions,...)
 	@valgrind $(VFLAGS) --gen-suppressions=all $(TEST)
@@ -90,6 +95,7 @@ docs:
 		for p in $(PKGS); do\
 			$(HGEN) -I includes/$$p.h src/$$p;\
 		done
+	@bear -- make re
 	@$(call log, G, Updated Docs)
 
 # ===== Colors =====

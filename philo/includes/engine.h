@@ -1,6 +1,7 @@
 #ifndef ENGINE_H
 # define ENGINE_H
 
+
 typedef struct s_engine
 {
 	int				flag[6];
@@ -19,6 +20,7 @@ typedef void *(*t_routine_f)(void *arg);
 void	init_philosopher(t_engine *e, int id, t_philo *philo);
 void	init_engine(t_engine *e, const int argc, const char *argv[]);
 void	run_engine(t_engine *e);
+void	engine_atomic_update(t_philo *philo, int *val, int amount);
 /*
 ** < checks.c > */
 

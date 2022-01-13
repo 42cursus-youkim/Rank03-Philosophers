@@ -13,8 +13,8 @@ static const char	*philocolor(t_philo *philo)
 
 void	print_msg(t_philo *philo, t_state state)
 {
-	const char	*msgcolor[5] = {HCYN, GRN, HMAG, YEL, REDB};
-	const char	*msg[5] = {
+	const char	*msgcolor[] = {HCYN, GRN, HMAG, YEL, REDB};
+	const char	*msg[] = {
 		"has taken a fork", "is eating",
 		"is sleeping", "is thinking", "died"
 	};

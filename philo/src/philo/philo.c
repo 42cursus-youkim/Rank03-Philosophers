@@ -32,6 +32,12 @@ static void	think(t_philo *philo)
 	print_msg(philo, THINKING);
 }
 
+void	*dummy_routine(void *arg)
+{
+	printf("I am called\n");
+	return arg;
+}
+
 void	*routine(void *arg)
 {
 	t_philo	*philo;

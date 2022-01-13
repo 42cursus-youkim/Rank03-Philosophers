@@ -32,5 +32,5 @@ void	*ycalloc(const size_t size)
 
 	ptr = malloc(size);
 	yassert(ptr, "malloc failed");
-	return memset(ptr, 0, size);
+	return (memset(ptr, 0, size));
 }

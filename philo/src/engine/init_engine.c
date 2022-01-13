@@ -31,17 +31,27 @@ void	init_engine(t_engine *e, const int argc, const char *argv[])
 	}
 }
 
+
+
 void	run_engine(t_engine *e)
 {
 	int			id;
-	pthread_t	temp;
+	// pthread_t	temp;
 
 	id = 0;
 	while (++id <= e->flag[num_philos])
 	{
-		init_thread(&e->philos[id].thread, routine, &e->philos[id]);
-		init_thread_detached(&temp, death_manager, &e->philos[id]);
-		if (e->flag[nums_need_eat] > 0)
-			init_thread_detached(&temp, eat_manager, &e->philos[id]);
+		init_thread(&e->philos[id].thread, dummy_routine, &e->philos[id]);
+		// init_thread_detached(&temp, death_manager, &e->philos[id]);
+		// if (e->flag[nums_need_eat] > 0)
+		//  	init_thread_detached(&temp, eat_manager, &e->philos[id]);
 	}
+}
+
+//	atomically update value to prevent race condition.
+void	engine_atomic_update(t_philo *philo, int *val, int amount)
+{
+	pthread_mutex_lock(&philo->e->lock);
+	*val += amount;
+	pthread_mutex_unlock(&philo->e->lock);
 }
