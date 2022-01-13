@@ -15,7 +15,7 @@ void	init_philosopher(t_engine *e, int id, t_philo *philo)
 
 /*	allocate memory for philosophers and forks. id starts from 1.
 */
-void	init_engine(t_engine *e, const int argc, const char *argv[])
+t_res	init_engine(t_engine *e, const int argc, const char *argv[])
 {
 	int	id;
 
@@ -23,10 +23,13 @@ void	init_engine(t_engine *e, const int argc, const char *argv[])
 	init_mutex(&e->enginelock);
 	e->philos = ycalloc((e->flag[num_philos] + 1) * sizeof(t_philo));
 	e->forks = ycalloc((e->flag[num_philos] + 1) * sizeof(pthread_mutex_t));
+	if (!e->philos || !e->forks)
+		return (ERR);
 	id = 0;
 	while (++id <= e->flag[num_philos])
 	{
 		init_mutex(&e->forks[id]);
 		init_philosopher(e, id, &e->philos[id]);
 	}
+	return (OK);
 }

@@ -1,17 +1,5 @@
 #include "philosophers.h"
 
-void	yerror(const char *msg)
-{
-	printf("%s[Error]\n\t%s%s\n", BHRED, msg, END);
-	exit(EXIT_FAILURE);
-}
-
-void	yassert(const bool cond, const char *msg)
-{
-	if (!cond)
-		yerror(msg);
-}
-
 t_res	yatoui(const char *str, int *n)
 {
 	int	i;
@@ -31,6 +19,7 @@ void	*ycalloc(const size_t size)
 	void	*ptr;
 
 	ptr = malloc(size);
-	yassert(ptr, "malloc failed");
+	if (!ptr)
+		return (NULL);
 	return (memset(ptr, 0, size));
 }

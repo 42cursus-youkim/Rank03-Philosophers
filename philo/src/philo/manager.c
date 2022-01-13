@@ -16,14 +16,23 @@ void	*eat_manager(void *arg)
 	return (NULL);
 }
 
+//	gets pointer to engine as input.
 void	*death_manager(void *arg)
 {
-	t_philo	*philo;
-	// bool	is_running;
+	// int			id;
+	t_engine	*e;
+	t_philo		*philos;
 
-	philo = arg;
-	if (philo)
-		philo->e->is_running = false;
+	e = arg;
+	philos = e->philos;
+	if (!philos)
+		return (NULL);
+	printf("[manager] hi\n");
+	// id = 0;
+	// while (++id <= e->flag[num_philos])
+	// {
+	// 	printf("[manager] reading info from thread %d\n", philos[id].id);
+	// }
 	// atomic_is_running(philo->e, &is_running);
 	// // printf("manager's mutex address: %p\n", &philo->e->lock);
 	// while (is_running)

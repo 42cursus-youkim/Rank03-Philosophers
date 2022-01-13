@@ -23,7 +23,7 @@ void	*atomic_read(t_engine *e, void *which);
 ** < init_engine.c > */
 
 void	init_philosopher(t_engine *e, int id, t_philo *philo);
-void	init_engine(t_engine *e, const int argc, const char *argv[]);
+t_res	init_engine(t_engine *e, const int argc, const char *argv[]);
 /*
 ** < checks.c > */
 
