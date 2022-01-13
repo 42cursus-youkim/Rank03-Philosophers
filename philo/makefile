@@ -1,25 +1,13 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: scarf < youkim@student.42seoul.kr>         +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/09/09 14:12:20 by youkim            #+#    #+#              #
-#    Updated: 2022/01/12 12:13:57 by scarf            ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 # ===== Target & FLAGS =====
 NAME     := philo
 
-CC       := gcc
+CC       := clang
 CFLAGS   := -Wall -Wextra -Werror #-O3
 
 PRE      := src/
 INC      := -I includes/
 
-DFLAGS	 := -g3 -DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address"
+DFLAGS	 := -g3 #-DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address"
 
 RM       := rm -rf
 TEST     := ./$(NAME) 3 410 200 200 1 #philos death eat sleep end
