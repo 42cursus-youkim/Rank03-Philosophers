@@ -21,6 +21,9 @@ void	init_engine(t_engine *e, const int argc, const char *argv[])
 
 	init_flag(e, argc, argv);
 	init_mutex(&e->enginelock);
+	pthread_mutex_lock(&e->enginelock);
+	pthread_mutex_unlock(&e->enginelock);
+	return ;
 	e->philos = ycalloc((e->flag[num_philos] + 1) * sizeof(t_philo));
 	e->forks = ycalloc((e->flag[num_philos] + 1) * sizeof(pthread_mutex_t));
 	id = 0;

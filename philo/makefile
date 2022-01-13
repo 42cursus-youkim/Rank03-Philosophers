@@ -69,9 +69,8 @@ log: docs all cls
 
 # ===== Valgrind =====
 VFLAGS := --leak-check=full --show-leak-kinds=all \
-			--track-origins=yes --show-reachable=no \
-			# --suppressions=./libft/macos.supp
-HFLAG  := --tool=helgrind
+			--track-origins=yes --show-reachable=no
+HFLAG  := --tool=helgrind --suppressions=thread.supp
 VSFLAGS := --show-reachable=yes --error-limit=no --gen-suppressions=all \
 			--log-file=./mlx.supp
 leak: docs all cls
@@ -83,7 +82,7 @@ hleak:
 
 supp: docs all cls
 	@$(call log, Y, Creating Leak Suppressions,...)
-	@valgrind $(VFLAGS) --gen-suppressions=all $(TEST)
+	@valgrind $(HFLAG) --gen-suppressions=all $(TEST)
 
 .PHONY: all re clean fclean test docs cls
 

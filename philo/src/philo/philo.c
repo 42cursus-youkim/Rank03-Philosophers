@@ -1,4 +1,6 @@
+// #include "philo.h"
 #include "philosophers.h"
+#include <stdbool.h>
 
 // static void	pickup_fork(t_philo *philo)
 // {
@@ -41,18 +43,27 @@ void	*dummy_routine(void *arg)
 void	*routine(void *arg)
 {
 	t_philo	*philo;
+	// bool	is_running;
 
 	philo = arg;
+	msleep(1000);
+	print_msg(philo, THINKING);
+	printf("bye\n");
+	if (!philo)
+		return (NULL);
 	// printf("philos's mutex address: %p\n", &philo->e->lock);
-	if (philo->id % 2)
-		msleep(philo->e->flag[time_to_eat]);
-	// while (philo->e->is_running)
+	// if (philo->id % 2)
+	// 	msleep(philo->e->flag[time_to_eat]);
+	// is_running = atomic_read(philo->e, &philo->e->is_running);
+	// printf("is_running: %d\n", is_running);
+	// while (true)
 	// {
+
+		// atomic_is_running(philo->e, &is_running);
 		// pickup_fork(philo);
 		// eat(philo);
 		// sleeps(philo);
 		// think(philo);
 	// }
-	msleep(1000);
 	return (NULL);
 }
