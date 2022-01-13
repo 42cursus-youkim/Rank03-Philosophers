@@ -46,11 +46,12 @@ void	*routine(void *arg)
 	// bool	is_running;
 
 	philo = arg;
-	msleep(1000);
-	print_msg(philo, THINKING);
-	printf("bye\n");
 	if (!philo)
 		return (NULL);
+	printf("뮤텍스 잠그기 시도 결과: %d\n", pthread_mutex_lock(&philo->e->enginelock));
+	// printf("[id %d] 뮤텍스를 잠궜다.\n", philo->id);
+	printf("뮤텍스 풀기 시도 결과: %d\n", pthread_mutex_unlock(&philo->e->enginelock));
+	// printf("[id %d] 뮤텍스를 풀었다.\n", philo->id);
 	// printf("philos's mutex address: %p\n", &philo->e->lock);
 	// if (philo->id % 2)
 	// 	msleep(philo->e->flag[time_to_eat]);

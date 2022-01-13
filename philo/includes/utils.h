@@ -1,9 +1,6 @@
 #ifndef UTILS_H
 # define UTILS_H
 
-# define END "\e[0m"
-# define BHRED "\e[1;91m"
-
 typedef enum e_flag
 {
 	num_philos = 0,

@@ -94,7 +94,6 @@ docs:
 		for p in $(PKGS); do\
 			$(HGEN) -I includes/$$p.h src/$$p;\
 		done
-	@bear -- make re
 	@$(call log, G, Updated Docs)
 
 # ===== Colors =====

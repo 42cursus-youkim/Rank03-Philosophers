@@ -1,9 +1,6 @@
 #ifndef PHILO_H
 # define PHILO_H
 
-#include <bits/pthreadtypes.h>
-#include <bits/types/struct_timeval.h>
-
 typedef enum s_state
 {
 	TAKEFORK,

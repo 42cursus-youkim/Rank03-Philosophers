@@ -1,12 +1,6 @@
 #ifndef ENGINE_H
 # define ENGINE_H
 
-
-#include "philo.h"
-#include <bits/pthreadtypes.h>
-#include <bits/types/struct_timeval.h>
-#include <stdbool.h>
-
 typedef struct s_engine
 {
 	int				flag[6];
