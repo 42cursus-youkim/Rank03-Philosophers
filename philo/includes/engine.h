@@ -17,8 +17,6 @@ typedef void *(*t_routine_f)(void *arg);
 ** < run_engine.c > */
 
 void	run_engine(t_engine *e);
-void	atomic_write(t_engine *e, int *which, int val);
-void	*atomic_read(t_engine *e, void *which);
 /*
 ** < init_engine.c > */
 

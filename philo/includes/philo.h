@@ -17,7 +17,6 @@ typedef struct s_philo
 /*
 ** < philo.c > */
 
-void	*dummy_routine(void *arg);
 void	*routine(void *arg);
 /*
 ** < manager.c > */

@@ -34,11 +34,6 @@
 // 	print_msg(philo, THINKING);
 // }
 
-void	*dummy_routine(void *arg)
-{
-	printf("I am called\n");
-	return arg;
-}
 
 void	*routine(void *arg)
 {
@@ -49,11 +44,13 @@ void	*routine(void *arg)
 	if (!philo)
 		return (NULL);
 	print_msg(philo, THINKING);
+	printf("is running? %d\n", philo->e->is_running);
+	atomic_stop_running(philo->e);
+	// printf("is running? %d\n", atomic_is_running(philo->e));
 	// printf("philos's mutex address: %p\n", &philo->e->lock);
 	// if (philo->id % 2)
 	// 	msleep(philo->e->flag[time_to_eat]);
-	// is_running = atomic_read(philo->e, &philo->e->is_running);
-	// printf("is_running: %d\n", is_running);
+
 	// while (true)
 	// {
 

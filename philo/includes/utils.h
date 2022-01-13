@@ -19,6 +19,7 @@ void	init_mutex(pthread_mutex_t *mutex);
 t_err	yatoui(const char *str, int *n);
 void	*ycalloc(const size_t size);
 int		exit_err(t_err err);
+void	atomic_stop_running(t_engine *e);
 /*
 ** < ylogging.c > */
 
