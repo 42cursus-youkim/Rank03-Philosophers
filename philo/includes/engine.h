@@ -2,12 +2,17 @@
 # define ENGINE_H
 
 
+#include "philo.h"
+#include <bits/pthreadtypes.h>
+#include <bits/types/struct_timeval.h>
+#include <stdbool.h>
+
 typedef struct s_engine
 {
 	int				flag[6];
 	pthread_mutex_t	*forks;
 	struct s_philo	*philos;
-	pthread_mutex_t	lock;
+	pthread_mutex_t	enginelock;
 	struct timeval	start_time;
 	bool			is_running;
 }	t_engine;
@@ -15,12 +20,15 @@ typedef struct s_engine
 typedef void *(*t_routine_f)(void *arg);
 //	@func
 /*
+** < run_engine.c > */
+
+void	run_engine(t_engine *e);
+void	engine_atomic_update(t_philo *philo, int *val, int amount);
+/*
 ** < init_engine.c > */
 
 void	init_philosopher(t_engine *e, int id, t_philo *philo);
 void	init_engine(t_engine *e, const int argc, const char *argv[]);
-void	run_engine(t_engine *e);
-void	engine_atomic_update(t_philo *philo, int *val, int amount);
 /*
 ** < checks.c > */
 

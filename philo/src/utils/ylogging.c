@@ -19,10 +19,10 @@ void	print_msg(t_philo *philo, t_state state)
 		"is sleeping", "is thinking", "died"
 	};
 
-	pthread_mutex_lock(&philo->e->lock);
+	pthread_mutex_lock(&philo->e->enginelock);
 	if (philo->e->is_running)
 		printf("%s%-6zu %-3d %s%s%s\n",
 			philocolor(philo), msec_diff(philo->e->start_time), philo->id,
 			msgcolor[state], msg[state], END);
-	pthread_mutex_unlock(&philo->e->lock);
+	pthread_mutex_unlock(&philo->e->enginelock);
 }

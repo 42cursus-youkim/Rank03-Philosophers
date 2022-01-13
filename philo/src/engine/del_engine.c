@@ -10,17 +10,17 @@ bool	is_everyone_finished_eat(t_engine *e)
 */
 void	add_finished_eat(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->e->lock);
+	pthread_mutex_lock(&philo->e->enginelock);
 	if (philo->eats == philo->e->flag[nums_need_eat])
 		philo->e->flag[nums_philos_finished_eat]++;
-	pthread_mutex_unlock(&philo->e->lock);
+	pthread_mutex_unlock(&philo->e->enginelock);
 }
 
 void	del_engine(t_engine *e)
 {
 	int	id;
 
-	pthread_mutex_destroy(&e->lock);
+	pthread_mutex_destroy(&e->enginelock);
 	id = 0;
 	while (++id <= e->flag[num_philos])
 	{

@@ -1,7 +1,7 @@
 # ===== Target & FLAGS =====
 NAME     := philo
 
-CC       := gcc
+CC       := clang
 CFLAGS   := -Wall -Wextra -Werror #-O3
 
 PRE      := src/
@@ -13,7 +13,7 @@ RM       := rm -rf
 TEST     := ./$(NAME) 1 410 200 200 1 #philos death eat sleep end
 # ===== Packages =====
 PKGS     := engine philo utils
-engineV  := main checks init_engine del_engine
+engineV  := main checks init_engine run_engine del_engine
 philoV   := philo manager
 utilsV   := ytime ythread yutils ylogging
 
@@ -78,7 +78,7 @@ leak: docs all cls
 	@$(call log, Y, Running Leak Test,...)
 	@colour-valgrind $(VFLAGS) $(TEST)
 
-tleak:
+hleak:
 	@colour-valgrind $(HFLAG) $(TEST)
 
 supp: docs all cls
