@@ -1,14 +1,13 @@
 #include "philosophers.h"
 
-int	main(const int argc, const char *argv[])
+int	main(int argc, char *argv[])
 {
+	t_err		err;
 	t_engine	engine;
 
-	if (init_engine(&engine, argc, argv) == ERR)
-	{
-		printf("could not initialize engine\n");
-		return (1);
-	}
+	err = init_engine(&engine, argc, argv);
+	if (err)
+		return (exit_err(err));
 	run_engine(&engine);
 	del_engine(&engine);
 	return (0);

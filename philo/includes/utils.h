@@ -16,8 +16,9 @@ void	init_mutex(pthread_mutex_t *mutex);
 /*
 ** < yutils.c > */
 
-t_res	yatoui(const char *str, int *n);
+t_err	yatoui(const char *str, int *n);
 void	*ycalloc(const size_t size);
+int		exit_err(t_err err);
 /*
 ** < ylogging.c > */
 
