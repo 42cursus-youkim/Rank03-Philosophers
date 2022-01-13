@@ -22,7 +22,7 @@ void	del_engine(t_engine *e)
 	pthread_t thread;
 
 	id = 0;
-	init_thread(&thread, death_manager, &e->philos[id]);
+	init_thread(&thread, death_manager, e);
 	// if (e->flag[nums_need_eat] > 0)
 	//  	init_thread_detached(&temp, eat_manager, &e->philos[id]);
 	while (++id <= e->flag[num_philos])

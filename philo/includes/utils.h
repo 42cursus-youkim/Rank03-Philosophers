@@ -24,5 +24,6 @@ void	atomic_stop_running(t_engine *e);
 ** < ylogging.c > */
 
 void	print_msg(t_philo *philo, t_state state);
+void	atomic_print_msg(t_philo *philo, t_state state);
 //	@end
 #endif
