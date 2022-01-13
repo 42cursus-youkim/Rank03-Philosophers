@@ -15,7 +15,7 @@ void	*eat_manager(void *arg)
 	return (NULL);
 }
 
-static void	check_death(t_engine *e, t_philo *philos)
+static void	check_philos(t_engine *e, t_philo *philos)
 {
 	int			id;
 
@@ -29,9 +29,11 @@ static void	check_death(t_engine *e, t_philo *philos)
 			print_msg(&philos[id], DIED);
 			e->is_running = false;
 		}
+		if (e->flag[nums_need_eat]
+			&& e->flag[nums_philos_finished_eat] == e->flag[num_philos])
+			e->is_running = false;
 		pthread_mutex_unlock(&e->enginelock);
 	}
-	// msleep(100);
 }
 
 //	gets pointer to engine as input.
@@ -44,10 +46,10 @@ void	*death_manager(void *arg)
 	e = arg;
 	philos = e->philos;
 
-	printf("[manager] hi\n");
 	while (e->is_running)
 	{
-		check_death(e, philos);
+		check_philos(e, philos);
+		msleep(1);
 	}
 	// atomic_is_running(philo->e, &is_running);
 	// // printf("manager's mutex address: %p\n", &philo->e->lock);

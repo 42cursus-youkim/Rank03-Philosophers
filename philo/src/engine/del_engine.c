@@ -8,7 +8,7 @@ bool	is_everyone_finished_eat(t_engine *e)
 /*	increase the number of philosophers who finished eating.
 	variable race condition protected with mutex[e->lock].
 */
-void	add_finished_eat(t_philo *philo)
+void	atomic_finish_eating(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->e->enginelock);
 	if (philo->eats == philo->e->flag[nums_need_eat])

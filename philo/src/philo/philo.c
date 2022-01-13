@@ -16,7 +16,7 @@ static void	eat(t_philo *philo)
 	// pthread_mutex_lock(&philo->lock);
 	gettimeofday(&philo->last_eat, NULL);
 	philo->eats++;
-	add_finished_eat(philo);
+	atomic_finish_eating(philo);
 	atomic_print_msg(philo, EATING);
 	msleep(philo->e->flag[time_to_eat]);
 	pthread_mutex_unlock(philo->left);
