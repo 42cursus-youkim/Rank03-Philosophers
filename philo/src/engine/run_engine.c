@@ -10,6 +10,7 @@ void	run_engine(t_engine *e)
 	{
 		init_thread(&e->philos[id].thread, routine, &e->philos[id]);
 	}
+	return ;
 	id = 0;
 	while (++id <= e->flag[num_philos])
 	{
