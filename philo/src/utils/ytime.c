@@ -14,7 +14,7 @@ void	msleep(size_t ms)
 	const size_t	start = getusec();
 
 	while (getusec() - start <= ms * mili_in_usec)
-		usleep(1);
+		usleep(10);
 }
 
 size_t	msec_diff(struct timeval from)

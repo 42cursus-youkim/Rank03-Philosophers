@@ -8,7 +8,7 @@ void	*eat_manager(void *arg)
 	while (philo->e->is_running)
 	{
 		pthread_mutex_lock(&philo->e->enginelock);
-		if (is_everyone_finished_eat(philo->e))
+		if (is_everyone_finished(philo->e))
 			philo->e->is_running = false;
 		pthread_mutex_unlock(&philo->e->enginelock);
 	}
@@ -49,7 +49,7 @@ void	*death_manager(void *arg)
 	while (e->is_running)
 	{
 		check_philos(e, philos);
-		msleep(1);
+		msleep(2);
 	}
 	// atomic_is_running(philo->e, &is_running);
 	// // printf("manager's mutex address: %p\n", &philo->e->lock);

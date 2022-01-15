@@ -30,7 +30,7 @@ t_err	init_flag(t_engine *e, int argc, char *argv[]);
 /*
 ** < del_engine.c > */
 
-bool	is_everyone_finished_eat(t_engine *e);
+bool	is_everyone_finished(t_engine *e);
 void	atomic_finish_eating(t_philo *philo);
 void	del_engine(t_engine *e);
 //	@end

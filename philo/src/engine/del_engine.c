@@ -1,6 +1,6 @@
 #include "philosophers.h"
 
-bool	is_everyone_finished_eat(t_engine *e)
+bool	is_everyone_finished(t_engine *e)
 {
 	return (e->flag[nums_philos_finished_eat] == e->flag[num_philos]);
 }
