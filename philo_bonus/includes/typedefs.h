@@ -1,5 +1,5 @@
-#ifndef ENUMS_H
-# define ENUMS_H
+#ifndef TYPEDEFS_H
+# define TYPEDEFS_H
 
 typedef enum e_res
 {
@@ -35,5 +35,12 @@ typedef enum s_state
 	THINKING,
 	DIED,
 }	t_state;
+
+//	mutex implemention in semaphore
+typedef struct s_semtex
+{
+	char	*name;
+	sem_t	*sem;
+}	t_semtex;
 
 #endif

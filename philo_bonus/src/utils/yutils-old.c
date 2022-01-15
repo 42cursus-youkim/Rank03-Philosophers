@@ -13,17 +13,6 @@ t_err	yatoui(const char *str, int *n)
 	return (OK);
 }
 
-//	uses internal memset
-void	*ycalloc(const size_t size)
-{
-	void	*ptr;
-
-	ptr = malloc(size);
-	if (!ptr)
-		return (NULL);
-	return (memset(ptr, 0, size));
-}
-
 int	exit_err(t_err err)
 {
 	const char	*err_msg[] = {

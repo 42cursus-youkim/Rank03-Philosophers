@@ -14,12 +14,15 @@
 # include <pthread.h>
 # include <semaphore.h>
 
+// ===== types =====
+# include <fcntl.h>
 
 //	===== philosophers =====
-# include "enums.h"
+# include "typedefs.h"
 # include "philo.h"
 # include "engine.h"
 # include "utils.h"
 # include "colors.h"
+# include "ylibz.h"
 
 #endif

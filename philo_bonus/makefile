@@ -12,11 +12,11 @@ DFLAGS	 := -g #-DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address"
 RM       := rm -rf
 TEST     := ./$(NAME) 2 410 200 100 1 #philos death eat sleep end
 # ===== Packages =====
-PKGS     := engine #hilo utils
+PKGS     := engine utils ylibz #hilo
 engineV  := main #checks init_engine run_engine del_engine
 # philoV   := philo manager
-# utilsV   := ytime ythread yutils ylogging
-
+utilsV   := ysemtex #ytime ythread yutils ylogging
+ylibzV   := ystr yutils
 # ===== Macros =====
 define choose_modules
 	$(foreach pkg, $(1),\
