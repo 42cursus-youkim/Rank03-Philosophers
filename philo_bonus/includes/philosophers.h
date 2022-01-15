@@ -4,11 +4,16 @@
 //	===== library =====
 # include <unistd.h>
 # include <stdbool.h>
+
+# include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
+
 # include <sys/time.h>
-# include <stdio.h>
+# include <sys/wait.h>
 # include <pthread.h>
+# include <semaphore.h>
+
 
 //	===== philosophers =====
 # include "enums.h"
