@@ -2,12 +2,12 @@
 NAME     := philo
 
 CC       := clang
-CFLAGS   := -Wall -Wextra -Werror #-O3
+CFLAGS   := -Wall -Wextra -Werror -O3
 
 PRE      := src/
 INC      := -I includes/
 
-DFLAGS	 := -g #-DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address"
+DFLAGS	 := #-g #-DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address"
 
 RM       := rm -rf
 TEST     := ./$(NAME) 5 800 200 200 10 #philos death eat sleep end
