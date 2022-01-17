@@ -7,7 +7,6 @@ static void	check_philos(t_engine *e, t_philo *philos)
 	id = 0;
 	while (++id <= e->flag[num_philos])
 	{
-		// printf("[manager] reading info from thread %d\n", philos[id].id);
 		pthread_mutex_lock(&e->enginelock);
 		if (msec_diff(philos[id].last_eat) >= (size_t)e->flag[time_to_die])
 		{
@@ -24,13 +23,11 @@ static void	check_philos(t_engine *e, t_philo *philos)
 //	gets pointer to engine as input.
 void	*manager(void *arg)
 {
-
 	t_engine	*e;
 	t_philo		*philos;
 
 	e = arg;
 	philos = e->philos;
-
 	while (atomic_is_running(e))
 	{
 		check_philos(e, philos);

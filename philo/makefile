@@ -10,12 +10,12 @@ INC      := -I includes/
 DFLAGS	 := -g #-DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address"
 
 RM       := rm -rf
-TEST     := ./$(NAME) 5 1000 200 100 5 #philos death eat sleep end
+TEST     := ./$(NAME) 5 800 200 200 10 #philos death eat sleep end
 # ===== Packages =====
 PKGS     := engine philo utils
-engineV  := main checks init_engine run_engine del_engine
+engineV  := checks init_engine run_engine
 philoV   := philo manager
-utilsV   := ytime ythread yutils ylogging
+utilsV   := ytime yutils ylogging
 
 # ===== Macros =====
 define choose_modules
@@ -23,7 +23,7 @@ define choose_modules
 		$(foreach file, $($(pkg)V),\
 			$(PRE)$(pkg)/$(file).c\
 		)\
-	)
+	) $(PRE)/main.c
 endef
 
 # ===== Sources & Objects & Includes =====

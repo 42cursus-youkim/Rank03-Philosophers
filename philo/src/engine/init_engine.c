@@ -35,7 +35,7 @@ t_err	init_engine(t_engine *e, int argc, char *argv[])
 	err = init_flag(e, argc, argv);
 	if (err)
 		return (err);
-	init_mutex(&e->enginelock);
+	pthread_mutex_init(&e->enginelock, NULL);
 	e->philos = ycalloc((e->flag[num_philos] + 1) * sizeof(t_philo));
 	if (!e->philos)
 		return (ERR_MEM);
@@ -45,7 +45,7 @@ t_err	init_engine(t_engine *e, int argc, char *argv[])
 	id = 0;
 	while (++id <= e->flag[num_philos])
 	{
-		init_mutex(&e->forks[id]);
+		pthread_mutex_init(&e->forks[id], NULL);
 		init_philosopher(e, id, &e->philos[id]);
 	}
 	return (OK);

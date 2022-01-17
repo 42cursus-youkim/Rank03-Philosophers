@@ -48,3 +48,14 @@ bool	atomic_is_running(t_engine *e)
 	pthread_mutex_unlock(&e->enginelock);
 	return (ret);
 }
+
+/*	increase the number of philosophers who finished eating.
+	variable race condition protected with mutex[e->lock].
+*/
+void	atomic_finish_eating(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->e->enginelock);
+	if (philo->eats == philo->e->flag[nums_need_eat])
+		philo->e->flag[nums_philos_finished_eat]++;
+	pthread_mutex_unlock(&philo->e->enginelock);
+}
