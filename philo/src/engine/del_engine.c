@@ -8,11 +8,12 @@ bool	is_everyone_finished(t_engine *e)
 /*	increase the number of philosophers who finished eating.
 	variable race condition protected with mutex[e->lock].
 */
-void	atomic_finish_eating(t_philo *philo)
+void	atomic_finisheat_and_msg(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->e->enginelock);
 	if (philo->eats == philo->e->flag[nums_need_eat])
 		philo->e->flag[nums_philos_finished_eat]++;
+	print_msg(philo, EATING);
 	pthread_mutex_unlock(&philo->e->enginelock);
 }
 
@@ -22,14 +23,15 @@ void	del_engine(t_engine *e)
 	pthread_t thread;
 
 	id = 0;
-	init_thread(&thread, death_manager, e);
+	init_thread(&thread, manager, e);
 	// if (e->flag[nums_need_eat] > 0)
 	//  	init_thread_detached(&temp, eat_manager, &e->philos[id]);
 	while (++id <= e->flag[num_philos])
 	{
 		pthread_join(e->philos[id].thread, NULL);
+		printf("joined thread %d\n", e->philos[id].id);
 		pthread_mutex_destroy(&e->forks[id]);
-		pthread_mutex_destroy(&e->philos[id].lock);
+		// pthread_mutex_destroy(&e->philos[id].lock);
 	}
 	free(e->forks);
 	free(e->philos);

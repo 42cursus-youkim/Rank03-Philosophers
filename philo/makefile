@@ -78,7 +78,7 @@ leak: docs all cls
 	@colour-valgrind $(VFLAGS) $(TEST)
 
 hleak:
-	@colour-valgrind $(HFLAG) $(TEST)
+	colour-valgrind $(HFLAG) $(TEST)
 
 supp: docs all cls
 	@$(call log, Y, Creating Leak Suppressions,...)

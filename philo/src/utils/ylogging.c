@@ -1,6 +1,7 @@
 #include "philosophers.h"
 
-static const char	*philocolor(t_philo *philo)
+// TODO: re-add static
+const char	*philocolor(t_philo *philo)
 {
 	const char	*color[] = {
 		"", BGRN, BBLU, BYEL, BMAG, BCYN, BRED, BWHT

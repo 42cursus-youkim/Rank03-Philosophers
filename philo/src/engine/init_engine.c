@@ -10,7 +10,7 @@ void	init_philosopher(t_engine *e, int id, t_philo *philo)
 	else
 		philo->right = &e->forks[id + 1];
 	philo->last_eat = e->start_time;
-	init_mutex(&philo->lock);
+	// init_mutex(&philo->lock);
 }
 
 /*	allocate memory for philosophers and forks. id starts from 1.

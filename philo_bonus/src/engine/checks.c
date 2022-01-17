@@ -1,13 +1,16 @@
 #include "philosophers.h"
 
-t_err	check_argc(int argc)
+void	check_argc(int argc)
 {
 	if (5 <= argc && argc <= 6)
-		return (OK);
-	return (ERR_ARG);
+		return;
+	printf("Usage: %s %s",
+		"./philosophers num_philos time_to_die",
+		"time_to_eat time_to_sleep [nums_need_eat]");
+	exit(1);
 }
 
-t_err	init_flag(t_engine *e, int argc, char *argv[])
+void	init_flag(t_engine *e, int argc, char *argv[])
 {
 	int		i;
 	t_err	err;
@@ -21,7 +24,7 @@ t_err	init_flag(t_engine *e, int argc, char *argv[])
 	i = -1;
 	while (++i < argc - 1)
 		if (yatoui(argv[i + 1], &e->flag[i]) != OK)
-			return (ERR_NUM);
+			yerror("invalid argument");
 	if (e->flag[num_philos] <= 0)
 		return (ERR_PHILO);
 	gettimeofday(&e->start_time, NULL);

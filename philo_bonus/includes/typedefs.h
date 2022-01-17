@@ -4,10 +4,7 @@
 typedef enum e_res
 {
 	OK = 0,
-	ERR_ARG,
-	ERR_NUM,
-	ERR_MEM,
-	ERR_PHILO,
+	ERR = -1,
 }	t_err;
 
 typedef enum e_in_usec

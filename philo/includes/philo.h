@@ -21,6 +21,5 @@ void	*routine(void *arg);
 /*
 ** < manager.c > */
 
-void	*eat_manager(void *arg);
-void	*death_manager(void *arg);
+void	*manager(void *arg);
 #endif

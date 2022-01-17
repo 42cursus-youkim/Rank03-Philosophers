@@ -39,15 +39,15 @@ int	exit_err(t_err err)
 	return (1);
 }
 
-// bool	atomic_is_running(t_engine *e)
-// {
-// 	bool	res;
+bool	atomic_is_running(t_engine *e)
+{
+	bool	res;
 
-// 	pthread_mutex_lock(&e->enginelock);
-// 	res = e->is_running;
-// 	pthread_mutex_unlock(&e->enginelock);
-// 	return (res);
-// }
+	pthread_mutex_lock(&e->enginelock);
+	res = e->is_running;
+	pthread_mutex_unlock(&e->enginelock);
+	return (res);
+}
 
 void	atomic_stop_running(t_engine *e)
 {
