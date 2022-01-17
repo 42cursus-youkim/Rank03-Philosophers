@@ -31,7 +31,7 @@ void	*manager(void *arg)
 	e = arg;
 	philos = e->philos;
 
-	while (e->is_running)
+	while (atomic_is_running(e))
 	{
 		check_philos(e, philos);
 		msleep(2);

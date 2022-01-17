@@ -9,7 +9,7 @@ typedef struct s_philo
 	pthread_mutex_t	*left;
 	pthread_mutex_t	*right;
 	pthread_mutex_t	*pick_first;
-	pthread_mutex_t	*pick_second;
+	pthread_mutex_t	*pick_last;
 	struct s_engine	*e;
 	struct timeval	last_eat;
 }	t_philo;

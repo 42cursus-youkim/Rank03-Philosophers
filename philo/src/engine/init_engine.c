@@ -9,6 +9,16 @@ void	init_philosopher(t_engine *e, int id, t_philo *philo)
 		philo->right = &e->forks[1];
 	else
 		philo->right = &e->forks[id + 1];
+	if (id % 2)
+	{
+		philo->pick_first = philo->left;
+		philo->pick_last = philo->right;
+	}
+	else
+	{
+		philo->pick_first = philo->right;
+		philo->pick_last = philo->left;
+	}
 	philo->last_eat = e->start_time;
 }
 
