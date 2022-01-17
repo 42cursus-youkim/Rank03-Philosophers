@@ -38,20 +38,3 @@ int	exit_err(t_err err)
 	printf("%s\n", err_msg[err]);
 	return (1);
 }
-
-// bool	atomic_is_running(t_engine *e)
-// {
-// 	bool	res;
-
-// 	pthread_mutex_lock(&e->enginelock);
-// 	res = e->is_running;
-// 	pthread_mutex_unlock(&e->enginelock);
-// 	return (res);
-// }
-
-void	atomic_stop_running(t_engine *e)
-{
-	pthread_mutex_lock(&e->enginelock);
-	e->is_running = false;
-	pthread_mutex_unlock(&e->enginelock);
-}

@@ -8,7 +8,8 @@ typedef struct s_philo
 	pthread_t		thread;
 	pthread_mutex_t	*left;
 	pthread_mutex_t	*right;
-	pthread_mutex_t	lock;
+	pthread_mutex_t	*pick_first;
+	pthread_mutex_t	*pick_second;
 	struct s_engine	*e;
 	struct timeval	last_eat;
 }	t_philo;
@@ -21,6 +22,5 @@ void	*routine(void *arg);
 /*
 ** < manager.c > */
 
-void	*eat_manager(void *arg);
-void	*death_manager(void *arg);
+void	*manager(void *arg);
 #endif
