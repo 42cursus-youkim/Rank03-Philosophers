@@ -2,22 +2,25 @@
 
 void	init_philosopher(t_engine *e, int id, t_philo *philo)
 {
+	pthread_mutex_t	*left;
+	pthread_mutex_t	*right;
+
 	philo->e = e;
 	philo->id = id;
-	philo->left = &e->forks[id];
+	left = &e->forks[id];
 	if (id == e->flag[num_philos])
-		philo->right = &e->forks[1];
+		right = &e->forks[1];
 	else
-		philo->right = &e->forks[id + 1];
+		right = &e->forks[id + 1];
 	if (id % 2)
 	{
-		philo->pick_first = philo->left;
-		philo->pick_last = philo->right;
+		philo->pick_first = left;
+		philo->pick_last = right;
 	}
 	else
 	{
-		philo->pick_first = philo->right;
-		philo->pick_last = philo->left;
+		philo->pick_first = right;
+		philo->pick_last = left;
 	}
 	philo->last_eat = e->start_time;
 }

@@ -6,8 +6,6 @@ typedef struct s_philo
 	int				id;
 	int				eats;
 	pthread_t		thread;
-	pthread_mutex_t	*left;
-	pthread_mutex_t	*right;
 	pthread_mutex_t	*pick_first;
 	pthread_mutex_t	*pick_last;
 	struct s_engine	*e;

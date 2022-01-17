@@ -5,6 +5,11 @@ static void	pickup_fork(t_philo *philo)
 {
 	pthread_mutex_lock(philo->pick_first);
 	atomic_print_msg(philo, TAKEFORK);
+	if (philo->e->flag[num_philos] == 1)
+	{
+		pthread_mutex_unlock(philo->pick_first);
+		return (void)msleep(philo->e->flag[time_to_die]);
+	}
 	pthread_mutex_lock(philo->pick_last);
 	atomic_print_msg(philo, TAKEFORK);
 }
@@ -20,7 +25,7 @@ static void	eat(t_philo *philo)
 	pthread_mutex_unlock(philo->pick_first);
 }
 
-//https://cs.colby.edu/courses/F19/cs333/notes/9.ConcurrentProgramming(2).pdf
+
 static void	sleeps(t_philo *philo)
 {
 	atomic_print_msg(philo, SLEEPING);
@@ -32,19 +37,29 @@ static void	think(t_philo *philo)
 	atomic_print_msg(philo, THINKING);
 }
 
+typedef void	(*t_philoaction)(t_philo *);
+
 void	*routine(void *arg)
 {
-	t_philo	*philo;
+	int					i;
+	t_philo				*philo;
+	const t_philoaction	actions[4] = {
+		pickup_fork, eat, sleeps, think
+	};
 
 	philo = arg;
 	if (philo->id % 2)
 		msleep(philo->e->flag[time_to_eat] / 2);
 	while (atomic_is_running(philo->e))
 	{
-		pickup_fork(philo);
-		eat(philo);
-		sleeps(philo);
-		think(philo);
+		i = -1;
+		while (++i < 4)
+		{
+			if (atomic_is_running(philo->e))
+				actions[i](philo);
+			else
+				break ;
+		}
 	}
 	return (NULL);
 }
