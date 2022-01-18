@@ -15,7 +15,7 @@ t_err	yatoui(const char *str, int *n)
 }
 
 //	unsigned int to ascii
-char	*yuitoa(int n)
+char	*new_yuitoa(int n)
 {
 	int		i;
 	char	*str;

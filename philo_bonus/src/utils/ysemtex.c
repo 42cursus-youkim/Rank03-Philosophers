@@ -6,7 +6,7 @@ static sem_t	*try_sem_open(const char *name, int amount)
 }
 
 // mutex api implemention with semaphore
-void	semtex_init(t_semtex *semtex, const char *name, int amount)
+void	new_semtex(t_semtex *semtex, char *name, int amount)
 {
 	semtex->sem = try_sem_open(name, amount);
 	if (semtex->sem == SEM_FAILED)
@@ -17,7 +17,7 @@ void	semtex_init(t_semtex *semtex, const char *name, int amount)
 	semtex->name = new_ystr(name);
 }
 
-void	semtex_destroy(t_semtex *semtex)
+void	del_semtex(t_semtex *semtex)
 {
 	sem_close(semtex->sem);
 	sem_unlink(semtex->name);

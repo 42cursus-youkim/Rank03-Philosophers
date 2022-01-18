@@ -3,13 +3,10 @@
 
 typedef struct s_philo
 {
-	int				id;
+	int				pid;
 	int				eats;
-	pthread_t		thread;
-	pthread_mutex_t	*left;
-	pthread_mutex_t	*right;
-	pthread_mutex_t	lock;
-	struct s_engine	*e;
+	// pthread_t		thread;
+	// struct s_engine	*e;
 	struct timeval	last_eat;
 }	t_philo;
 

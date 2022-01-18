@@ -13,7 +13,7 @@ RM       := rm -rf
 TEST     := ./$(NAME) 2 410 200 100 1 #philos death eat sleep end
 # ===== Packages =====
 PKGS     := engine utils #philo
-engineV  := checks init_engine #run_engine del_engine
+engineV  := checks init_engine run_engine
 # philoV   := philo manager
 utilsV   := ysemtex ystr yutils ytime ylogging
 ylibzV   :=
