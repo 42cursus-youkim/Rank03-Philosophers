@@ -4,7 +4,10 @@ t_err	check_argc(int argc)
 {
 	if (5 <= argc && argc <= 6)
 		return (OK);
-	return (ERR_ARG);
+	printf("Usage: %s%s\n",
+		"./philosophers num_philos time_to_die",
+		"time_to_eat time_to_sleep [nums_need_eat]");
+	exit(1);
 }
 
 t_err	init_flag(t_engine *e, int argc, char *argv[])

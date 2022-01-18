@@ -6,7 +6,7 @@ void	init_thread(pthread_t *pthread, t_routine_f func, void *arg)
 
 	if (res == OK)
 		return ;
-	// yerror("could not initialize thread");
+	yerror("could not initialize thread");
 }
 
 void	init_mutex(pthread_mutex_t *mutex)
@@ -15,5 +15,5 @@ void	init_mutex(pthread_mutex_t *mutex)
 
 	if (res == OK)
 		return ;
-	// yerror("could not initialize mutex");
+	yerror("could not initialize mutex");
 }

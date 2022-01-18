@@ -28,7 +28,7 @@ size_t	msec_diff(struct timeval from);
 /*
 ** < yutils-old.c > */
 
-t_err	yatoui(const char *str, int *n);
+void	yatoui(const char *str, int *n);
 int		exit_err(t_err err);
 void	atomic_stop_running(t_engine *e);
 //	@end

@@ -23,7 +23,6 @@ void	print_msg(t_philo *philo, t_state state)
 		printf("%s%-6zu %-3d %s%s%s\n",
 			philocolor(philo), msec_diff(philo->e->start_time), philo->id,
 			msgcolor[state], msg[state], END);
-
 }
 
 void	atomic_print_msg(t_philo *philo, t_state state)

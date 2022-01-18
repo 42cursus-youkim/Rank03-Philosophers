@@ -13,6 +13,6 @@ int		ystr_append(char **pstr, char *src);
 /*
 ** < yutils.c > */
 
-void	yerror(char *where, char *msg);
+void	yerror(char *msg);
 void	*ycalloc(const size_t size);
 #endif

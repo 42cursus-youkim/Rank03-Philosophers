@@ -1,9 +1,9 @@
 #include "philosophers.h"
 
-//	do not use after fork()! it only closes one procoess
-void	yerror(char *where, char *msg)
+//	do not use after fork()! it would only close one procoess
+void	yerror(char *msg)
 {
-	printf("%s[Error! @ %s]\n    %s%s\n", BHRED, where, msg, END);
+	printf("%s[Error]\n    %s%s\n", BHRED, msg, END);
 	exit(1);
 }
 
@@ -14,6 +14,6 @@ void	*ycalloc(const size_t size)
 
 	ptr = malloc(size);
 	if (!ptr)
-		yerror("ycalloc", "failed to allocate memory");
+		yerror("failed to allocate memory");
 	return (memset(ptr, 0, size));
 }

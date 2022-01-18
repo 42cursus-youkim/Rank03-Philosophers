@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youkim    <42.4.youkim@gmail.com>          +#+  +:+       +#+        */
+/*   By: youkim <42.4.youkim@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 17:08:22 by youkim            #+#    #+#             */
-/*   Updated: 2022/01/17 18:52:56 by youkim           ###   ########.fr       */
+/*   Updated: 2022/01/18 16:14:07 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 static void	pickup_fork(t_philo *philo)
 {
 	pthread_mutex_lock(philo->pick_first);
+	if (!atomic_is_running(philo->e))
+	{
+		pthread_mutex_unlock(philo->pick_first);
+		return ;
+	}
 	atomic_print_msg(philo, TAKEFORK);
 	if (philo->e->flag[num_philos] == 1)
 	{
@@ -22,6 +27,12 @@ static void	pickup_fork(t_philo *philo)
 		return ((void)msleep(philo->e->flag[time_to_die]));
 	}
 	pthread_mutex_lock(philo->pick_last);
+	if (!atomic_is_running(philo->e))
+	{
+		pthread_mutex_unlock(philo->pick_last);
+		pthread_mutex_unlock(philo->pick_first);
+		return ;
+	}
 	atomic_print_msg(philo, TAKEFORK);
 }
 
@@ -49,26 +60,19 @@ static void	think(t_philo *philo)
 
 void	*routine(void *arg)
 {
-	int					i;
-	t_philo				*philo;
-	const t_philoact_f	actions[4] = {
-		pickup_fork, eat, sleeps, think
-	};
+	t_philo	*philo;
 
 	philo = arg;
 	if (philo->id % 2)
 		msleep(philo->e->flag[time_to_eat]);
 	while (atomic_is_running(philo->e))
 	{
-		i = -1;
-		while (++i < 4)
-		{
-			if (atomic_is_running(philo->e))
-				actions[i](philo);
-			else
-				break ;
-		}
-		msleep(1);
+		pickup_fork(philo);
+		eat(philo);
+		sleeps(philo);
+		think(philo);
+		usleep(100);
+		// msleep(1);
 	}
 	return (NULL);
 }
