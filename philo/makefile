@@ -1,10 +1,22 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/01/18 12:47:38 by youkim            #+#    #+#              #
+#    Updated: 2022/01/18 12:47:39 by youkim           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 # ===== Target & FLAGS =====
 NAME     := philo
 
 CC       := clang
 CFLAGS   := -Wall -Wextra -Werror -O3
 
-PRE      := src/
+PRE      := src
 INC      := -I includes/
 
 DFLAGS	 := #-g #-DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address"
@@ -21,7 +33,7 @@ utilsV   := ytime yutils ylogging
 define choose_modules
 	$(foreach pkg, $(1),\
 		$(foreach file, $($(pkg)V),\
-			$(PRE)$(pkg)/$(file).c\
+			$(PRE)/$(pkg)/$(file).c\
 		)\
 	) $(PRE)/main.c
 endef

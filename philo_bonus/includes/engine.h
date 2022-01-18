@@ -14,15 +14,6 @@ typedef struct s_engine
 typedef void *(*t_routine_f)(void *arg);
 //	@func
 /*
-** < run_engine.c > */
-
-void	run_engine(t_engine *e);
-/*
-** < init_engine.c > */
-
-void	init_philosopher(t_engine *e, int id, t_philo *philo);
-t_err	init_engine(t_engine *e, int argc, char *argv[]);
-/*
 ** < checks.c > */
 
 t_err	check_argc(int argc);
@@ -33,5 +24,14 @@ t_err	init_flag(t_engine *e, int argc, char *argv[]);
 bool	is_everyone_finished(t_engine *e);
 void	atomic_finish_eating(t_philo *philo);
 void	del_engine(t_engine *e);
+/*
+** < init_engine.c > */
+
+void	init_philosopher(t_engine *e, int id, t_philo *philo);
+t_err	init_engine(t_engine *e, int argc, char *argv[]);
+/*
+** < run_engine.c > */
+
+void	run_engine(t_engine *e);
 //	@end
 #endif
