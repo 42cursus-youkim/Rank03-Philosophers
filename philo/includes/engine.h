@@ -29,19 +29,19 @@ typedef void	(*t_philoact_f)(t_philo *);
 
 //	@func
 /*
-** < run_engine.c > */
+** < checks.c > */
 
-void	run_engine(t_engine *e);
-void	del_engine(t_engine *e);
+t_err	check_argc(int argc);
+t_err	init_flag(t_engine *e, int argc, char *argv[]);
 /*
 ** < init_engine.c > */
 
 void	init_philosopher(t_engine *e, int id, t_philo *philo);
 t_err	init_engine(t_engine *e, int argc, char *argv[]);
 /*
-** < checks.c > */
+** < run_engine.c > */
 
-t_err	check_argc(int argc);
-t_err	init_flag(t_engine *e, int argc, char *argv[]);
+void	run_engine(t_engine *e);
+void	del_engine(t_engine *e);
 //	@end
 #endif

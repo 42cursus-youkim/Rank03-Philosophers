@@ -26,11 +26,11 @@ typedef struct s_philo
 
 //	@func
 /*
-** < philo.c > */
-
-void	*routine(void *arg);
-/*
 ** < manager.c > */
 
 void	*manager(void *arg);
+/*
+** < philo.c > */
+
+void	*routine(void *arg);
 #endif
