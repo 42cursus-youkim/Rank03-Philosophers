@@ -4,7 +4,7 @@
 typedef enum e_res
 {
 	OK = 0,
-	ERR,
+	ERR = -1,
 }	t_err;
 
 typedef enum e_in_usec
