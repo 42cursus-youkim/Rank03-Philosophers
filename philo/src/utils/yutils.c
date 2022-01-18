@@ -1,43 +1,73 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   yutils.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: youkim    <42.4.youkim@gmail.com>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/17 17:08:22 by youkim            #+#    #+#             */
+/*   Updated: 2022/01/17 19:00:36 by youkim           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philosophers.h"
 
-void	print_msg(t_philo *philo, char *str)
-{
-	pthread_mutex_lock(&philo->e->available);
-	printf("%zu\t%d\t%s\n", msec_diff(philo->e), philo->id, str);
-	pthread_mutex_unlock(&philo->e->available);
-}
-
-void	yerror(const char *msg)
-{
-	printf("%s[Error]\n\t%s%s\n", BHRED, msg, END);
-	exit(EXIT_FAILURE);
-}
-
-void	yassert(const bool cond, const char *msg)
-{
-	if (!cond)
-		yerror(msg);
-}
-
-t_res	yatoui(const char *str, int *n)
+t_err	yatoui(const char *str, int *n)
 {
 	int	i;
 
 	i = 0;
 	*n = 0;
 	if (!str || str[0] == '-')
-		return (ERR);
+		return (ERR_ARG);
 	while ('0' <= str[i] && str[i] <= '9')
 		(*n) = (*n) * 10 + (str[i++] - '0');
 	return (OK);
 }
 
-//	no NULL-termination, use new_ystr* for that
-void	*ymalloc(const size_t size)
+//	uses internal memset
+void	*ycalloc(const size_t size)
 {
 	void	*ptr;
 
 	ptr = malloc(size);
-	yassert(ptr, "malloc failed");
-	return (ptr);
+	if (!ptr)
+		return (NULL);
+	return (memset(ptr, 0, size));
+}
+
+int	exit_err(t_err err)
+{
+	const char	*err_msg[] = {
+		"NOT AN ERROR",
+		"Usage: ./philosophers\
+		num_philos time_to_die time_to_eat time_to_sleep [nums_need_eat]",
+		"cannot convert given argument to non-negative integer",
+		"failed to allocate memory",
+		"number of philosophers must be positive",
+	};
+
+	printf("%s\n", err_msg[err]);
+	return (1);
+}
+
+bool	atomic_is_running(t_engine *e)
+{
+	bool	ret;
+
+	pthread_mutex_lock(&e->enginelock);
+	ret = e->is_running;
+	pthread_mutex_unlock(&e->enginelock);
+	return (ret);
+}
+
+/*	increase the number of philosophers who finished eating.
+	variable race condition protected with mutex[e->lock].
+*/
+void	atomic_finish_eating(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->e->enginelock);
+	if (philo->eats == philo->e->flag[nums_need_eat])
+		philo->e->flag[nums_philos_finished_eat]++;
+	pthread_mutex_unlock(&philo->e->enginelock);
 }

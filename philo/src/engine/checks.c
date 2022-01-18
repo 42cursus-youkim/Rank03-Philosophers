@@ -1,26 +1,41 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checks.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: youkim    <42.4.youkim@gmail.com>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/15 14:21:37 by youkim            #+#    #+#             */
+/*   Updated: 2022/01/15 14:21:37 by youkim           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philosophers.h"
 
-void	check_argc(const int argc)
+t_err	check_argc(int argc)
 {
 	if (5 <= argc && argc <= 6)
-		return ;
-	printf("Usage: ./philosophers %s",
-		"num_philos time_to_die time_to_eat time_to_sleep [nums_need_eat]\n");
-	exit(0);
+		return (OK);
+	return (ERR_ARG);
 }
 
-void	init_flag(t_engine *e, const int argc, const char *argv[])
+t_err	init_flag(t_engine *e, int argc, char *argv[])
 {
-	int	i;
+	int		i;
+	t_err	err;
 
-	check_argc(argc);
+	err = check_argc(argc);
+	if (err)
+		return (err);
 	e->is_running = true;
 	e->flag[nums_need_eat] = 0;
 	e->flag[nums_philos_finished_eat] = 0;
 	i = -1;
 	while (++i < argc - 1)
-		yassert(yatoui(argv[i + 1], &e->flag[i]) == OK,
-			"cannot convert given argument to non-negative integer");
-	yassert(e->flag[num_philos] > 0, "number of philosophers must be positive");
+		if (yatoui(argv[i + 1], &e->flag[i]) != OK)
+			return (ERR_NUM);
+	if (e->flag[num_philos] <= 0)
+		return (ERR_PHILO);
 	gettimeofday(&e->start_time, NULL);
+	return (OK);
 }

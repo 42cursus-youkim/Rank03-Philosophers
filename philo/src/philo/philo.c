@@ -1,52 +1,74 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: youkim    <42.4.youkim@gmail.com>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/17 17:08:22 by youkim            #+#    #+#             */
+/*   Updated: 2022/01/17 18:52:56 by youkim           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philosophers.h"
 
 static void	pickup_fork(t_philo *philo)
 {
-	pthread_mutex_lock(philo->right);
-	print_msg(philo, "has taken a fork");
-	pthread_mutex_lock(philo->left);
-	print_msg(philo, "has taken a fork");
+	pthread_mutex_lock(philo->pick_first);
+	atomic_print_msg(philo, TAKEFORK);
+	if (philo->e->flag[num_philos] == 1)
+	{
+		pthread_mutex_unlock(philo->pick_first);
+		return ((void)msleep(philo->e->flag[time_to_die]));
+	}
+	pthread_mutex_lock(philo->pick_last);
+	atomic_print_msg(philo, TAKEFORK);
 }
 
 static void	eat(t_philo *philo)
 {
-	philo->eats++;
-	print_msg(philo, "is eating");
-	msleep(philo->e->flag[time_to_eat]);
 	gettimeofday(&philo->last_eat, NULL);
-	pthread_mutex_unlock(philo->left);
-	pthread_mutex_unlock(philo->right);
-	if (philo->eats == philo->e->flag[nums_need_eat])
-		philo->e->flag[nums_philos_finished_eat]++;
-	// FIXME: convert to mutex and send to manager
-	if (philo->e->flag[nums_philos_finished_eat] == philo->e->flag[num_philos])
-		philo->e->is_running = false;
+	philo->eats++;
+	atomic_finish_eating(philo);
+	atomic_print_msg(philo, EATING);
+	msleep(philo->e->flag[time_to_eat]);
+	pthread_mutex_unlock(philo->pick_last);
+	pthread_mutex_unlock(philo->pick_first);
 }
 
 static void	sleeps(t_philo *philo)
 {
-	print_msg(philo, "is sleeping");
+	atomic_print_msg(philo, SLEEPING);
 	msleep(philo->e->flag[time_to_sleep]);
 }
 
 static void	think(t_philo *philo)
 {
-	print_msg(philo, "is thinking");
+	atomic_print_msg(philo, THINKING);
 }
 
 void	*routine(void *arg)
 {
-	t_philo	*philo;
+	int					i;
+	t_philo				*philo;
+	const t_philoact_f	actions[4] = {
+		pickup_fork, eat, sleeps, think
+	};
 
 	philo = arg;
 	if (philo->id % 2)
 		msleep(philo->e->flag[time_to_eat]);
-	while (philo->e->is_running)
+	while (atomic_is_running(philo->e))
 	{
-		pickup_fork(philo);
-		eat(philo);
-		sleeps(philo);
-		think(philo);
+		i = -1;
+		while (++i < 4)
+		{
+			if (atomic_is_running(philo->e))
+				actions[i](philo);
+			else
+				break ;
+		}
+		msleep(1);
 	}
 	return (NULL);
 }

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ytime.c                                            :+:      :+:    :+:   */
+/*   enums.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: youkim    <42.4.youkim@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,32 +10,42 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosophers.h"
+#ifndef ENUMS_H
+# define ENUMS_H
 
-size_t	getusec(void)
+typedef enum e_res
 {
-	struct timeval	tv;
+	OK = 0,
+	ERR_ARG,
+	ERR_NUM,
+	ERR_MEM,
+	ERR_PHILO,
+}	t_err;
 
-	gettimeofday(&tv, NULL);
-	return (tv.tv_sec * sec_in_usec + tv.tv_usec);
-}
-
-//	sleep in miliseconds
-void	msleep(size_t ms)
+typedef enum e_in_usec
 {
-	const size_t	start = getusec();
+	mili_in_usec = 1000,
+	sec_in_mili = 1000,
+	sec_in_usec = 1000 * mili_in_usec,
+}	t_in_usec;
 
-	while (getusec() - start <= ms * mili_in_usec)
-		usleep(10);
-}
-
-size_t	msec_diff(struct timeval from)
+typedef enum e_flag
 {
-	struct timeval	now;
-	size_t			diff;
+	num_philos = 0,
+	time_to_die,
+	time_to_eat,
+	time_to_sleep,
+	nums_need_eat,
+	nums_philos_finished_eat,
+}	t_flag;
 
-	gettimeofday(&now, NULL);
-	diff = (now.tv_sec - from.tv_sec) * sec_in_mili;
-	diff += (now.tv_usec - from.tv_usec) / mili_in_usec;
-	return (diff);
-}
+typedef enum s_state
+{
+	TAKEFORK,
+	EATING,
+	SLEEPING,
+	THINKING,
+	DIED,
+}	t_state;
+
+#endif

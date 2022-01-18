@@ -1,6 +1,16 @@
 # Project
 philo/philo
+philo_bonus/philo_bonus
 .venv
+.idea
+*.py
+*.txt
+
+# Clang
+compile_commands.json
+.cache
+.vscode
+
 # Prerequisites
 *.d
 

@@ -1,43 +1,64 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_engine.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: youkim    <42.4.youkim@gmail.com>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/17 17:08:22 by youkim            #+#    #+#             */
+/*   Updated: 2022/01/17 18:58:57 by youkim           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philosophers.h"
 
 void	init_philosopher(t_engine *e, int id, t_philo *philo)
 {
+	pthread_mutex_t	*left;
+	pthread_mutex_t	*right;
+
 	philo->e = e;
 	philo->id = id;
-	philo->left = &e->forks[id];
+	left = &e->forks[id];
 	if (id == e->flag[num_philos])
-		philo->right = &e->forks[1];
+		right = &e->forks[1];
 	else
-		philo->right = &e->forks[id + 1];
+		right = &e->forks[id + 1];
+	if (id % 2)
+	{
+		philo->pick_first = left;
+		philo->pick_last = right;
+	}
+	else
+	{
+		philo->pick_first = right;
+		philo->pick_last = left;
+	}
 	philo->last_eat = e->start_time;
-	init_mutex(&philo->lock);
 }
 
-/*	allocate memory for philosophers and forks. id start from 1.
+/*	allocate memory for philosophers and forks. id starts from 1.
 */
-void	init_engine(t_engine *e, const int argc, const char *argv[])
+t_err	init_engine(t_engine *e, int argc, char *argv[])
 {
-	int	id;
+	int		id;
+	t_err	err;
 
-	init_flag(e, argc, argv);
-	init_mutex(&e->available);
-	e->philos = ymalloc((e->flag[num_philos] + 1) * sizeof(t_philo));
-	e->forks = ymalloc((e->flag[num_philos] + 1) * sizeof(pthread_mutex_t));
+	err = init_flag(e, argc, argv);
+	if (err)
+		return (err);
+	pthread_mutex_init(&e->enginelock, NULL);
+	e->philos = ycalloc((e->flag[num_philos] + 1) * sizeof(t_philo));
+	if (!e->philos)
+		return (ERR_MEM);
+	e->forks = ycalloc((e->flag[num_philos] + 1) * sizeof(pthread_mutex_t));
+	if (!e->forks)
+		return (ERR_MEM);
 	id = 0;
 	while (++id <= e->flag[num_philos])
 	{
-		init_mutex(&e->forks[id]);
+		pthread_mutex_init(&e->forks[id], NULL);
 		init_philosopher(e, id, &e->philos[id]);
 	}
-}
-
-void	run_engine(t_engine *e)
-{
-	int	id;
-
-	id = 0;
-	while (++id <= e->flag[num_philos])
-	{
-		init_thread(&e->philos[id].thread, routine, &e->philos[id]);
-	}
+	return (OK);
 }
