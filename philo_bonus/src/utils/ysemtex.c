@@ -24,11 +24,13 @@ void	del_semtex(t_semtex *semtex)
 	free(semtex->name);
 }
 
+//	-1, to value, actually
 void	semtex_lock(t_semtex *semtex)
 {
 	sem_wait(semtex->sem);
 }
 
+// 	+1 to value, actually
 void	semtex_unlock(t_semtex *semtex)
 {
 	sem_post(semtex->sem);

@@ -19,7 +19,7 @@ void	engine_proc(t_engine *e)
 	id = 0;
 	while (++id < e->flag[num_philos])
 		waitpid(e->pids[id], NULL, 0);
-	printf("부모 프로세스에용\n");
+	printf("자식 프로세스 모두 끝\n");
 	printf("부모 pid는 %d\n", getpid());
 	printf("자식 프로세스 번호들은 => ");
 	PRINTARR(e->flag[num_philos], e->pids);
