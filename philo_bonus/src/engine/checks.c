@@ -12,7 +12,7 @@ t_err	check_argc(int argc)
 
 void	init_flag(t_engine *e, int argc, char *argv[])
 {
-	int		i;
+	int	i;
 
 	e->is_running = true;
 	e->flag[nums_need_eat] = 0;

@@ -23,7 +23,7 @@ void	init_flag(t_engine *e, int argc, char *argv[]);
 ** < run_engine.c > */
 
 void	init_engine(t_engine *e, int argc, char *argv[]);
-int		spawn_procs(t_engine *e);
+void	run_engine(t_engine *e);
 void	del_engine(t_engine *e);
 //	@end
 #endif

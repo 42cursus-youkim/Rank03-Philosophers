@@ -11,7 +11,7 @@ void	init_engine(t_engine *e, int argc, char *argv[])
 	e->pids = ycalloc(e->flag[num_philos] * sizeof(int));
 }
 
-int	spawn_procs(t_engine *e)
+void	run_engine(t_engine *e)
 {
 	int	id;
 	int	pid;
@@ -22,11 +22,11 @@ int	spawn_procs(t_engine *e)
 		pid = fork();
 		e->pids[id] = pid;
 		if (pid == IS_CHILD)
-			break ;
+			return (philo_proc());
 		else if (pid < 0)
 			yerror("error while forking");
 	}
-	return (pid);
+	engine_proc(e);
 }
 
 void	del_engine(t_engine *e)

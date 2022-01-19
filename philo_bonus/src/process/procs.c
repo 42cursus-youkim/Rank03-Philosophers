@@ -5,10 +5,11 @@
 		printf("%d ", arr[i]); \
 	printf("\n");
 
-//	TODO: getpid() 지우기
+
 void	philo_proc(void)
 {
-	printf("안녀ㅕㅕㅕㅇ, 내 pid는 %d\n", getpid());
+	int pid = getpid(); //	TODO: getpid() 지우기
+	printf("안녀ㅕㅕㅕㅇ, 내 pid는 %d\n", pid);
 	exit(0);
 }
 
