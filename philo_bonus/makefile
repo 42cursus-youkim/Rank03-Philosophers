@@ -10,11 +10,11 @@ INC      := -I includes/
 DFLAGS	 := -g #-DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address"
 
 RM       := rm -rf
-TEST     := ./$(NAME) 2 410 200 100 1 #philos death eat sleep end
+TEST     := ./$(NAME) 1 410 200 100 1 #philos death eat sleep end
 # ===== Packages =====
-PKGS     := engine utils #philo
-engineV  := checks init_engine run_engine
-# philoV   := philo manager
+PKGS     := engine utils process
+engineV  := checks run_engine
+processV := procs
 utilsV   := ysemtex ystr yutils ytime ylogging
 ylibzV   :=
 # ===== Macros =====

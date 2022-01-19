@@ -3,10 +3,6 @@
 
 //	@func
 /*
-** < ylogging.c > */
-
-void	print_msg(t_philo *philo, t_state state);
-/*
 ** < ysemtex.c > */
 
 void	new_semtex(t_semtex *semtex, char *name, int amount);

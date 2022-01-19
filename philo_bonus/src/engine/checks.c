@@ -14,7 +14,6 @@ void	init_flag(t_engine *e, int argc, char *argv[])
 {
 	int		i;
 
-	check_argc(argc);
 	e->is_running = true;
 	e->flag[nums_need_eat] = 0;
 	e->flag[nums_philos_finished_eat] = 0;

@@ -19,8 +19,8 @@
 
 //	===== philosophers =====
 # include "typedefs.h"
-# include "philo.h"
 # include "engine.h"
+# include "process.h"
 # include "utils.h"
 # include "colors.h"
 # include "ylibz.h"
