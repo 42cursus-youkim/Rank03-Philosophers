@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 17:08:22 by youkim            #+#    #+#             */
-/*   Updated: 2022/01/22 15:12:02 by youkim           ###   ########.fr       */
+/*   Updated: 2022/01/22 15:18:48 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static t_err	del_from_mutex(t_engine *e, int till)
 	int	id;
 
 	id = 0;
-	while (++id <= till)
+	while (++id < till)
 		pthread_mutex_destroy(&e->forks[id]);
 	free(e->forks);
 	free(e->philos);
@@ -69,12 +69,8 @@ t_err	init_engine(t_engine *e, int argc, char *argv[])
 		return (ERR_MEM);
 	id = 0;
 	while (++id <= e->flag[num_philos])
-	{
-		pthread_mutex_init(&e->forks[id], NULL);
-		// if (pthread_mutex_init(&e->forks[id], NULL) == ENOMEM)
-		if (id == 3)
+		if (pthread_mutex_init(&e->forks[id], NULL) == ENOMEM)
 			return (del_from_mutex(e, id));
-	}
 	id = 0;
 	while (++id <= e->flag[num_philos])
 		init_philosopher(e, id, &e->philos[id]);

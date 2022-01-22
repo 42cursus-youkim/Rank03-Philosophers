@@ -6,7 +6,7 @@
 #    By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/18 12:47:38 by youkim            #+#    #+#              #
-#    Updated: 2022/01/18 12:47:39 by youkim           ###   ########.fr        #
+#    Updated: 2022/01/22 15:18:39 by youkim           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,12 +22,12 @@ INC      := -I includes/
 DFLAGS	 := #-g #-DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address"
 
 RM       := rm -rf
-TEST     := ./$(NAME) 5 800 200 200 10 #philos death eat sleep end
+TEST     := ./$(NAME) 5 800 200 200 5 #philos death eat sleep end
 # ===== Packages =====
 PKGS     := engine philo utils
 engineV  := checks init_engine run_engine
 philoV   := philo manager
-utilsV   := ytime yutils ylogging
+utilsV   := ytime yutils ylogging yatomic
 
 # ===== Macros =====
 define choose_modules
