@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youkim <42.4.youkim@gmail.com>             +#+  +:+       +#+        */
+/*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 17:08:22 by youkim            #+#    #+#             */
-/*   Updated: 2022/01/18 16:14:07 by youkim           ###   ########.fr       */
+/*   Updated: 2022/01/22 16:44:42 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ void	*routine(void *arg)
 		sleeps(philo);
 		think(philo);
 		usleep(100);
-		// msleep(1);
 	}
 	return (NULL);
 }

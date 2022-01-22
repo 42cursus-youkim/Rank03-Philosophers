@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ylogging.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youkim    <42.4.youkim@gmail.com>          +#+  +:+       +#+        */
+/*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 17:08:22 by youkim            #+#    #+#             */
-/*   Updated: 2022/01/17 19:02:29 by youkim           ###   ########.fr       */
+/*   Updated: 2022/01/22 16:51:05 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,4 @@ void	print_msg(t_philo *philo, t_state state)
 		printf("%s%-6zu %-3d %s%s%s\n",
 			philocolor(philo), msec_diff(philo->e->start_time), philo->id,
 			msgcolor[state], msg[state], END);
-}
-
-void	atomic_print_msg(t_philo *philo, t_state state)
-{
-	pthread_mutex_lock(&philo->e->enginelock);
-	print_msg(philo, state);
-	pthread_mutex_unlock(&philo->e->enginelock);
 }

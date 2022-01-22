@@ -18,13 +18,13 @@
 ** < yatomic.c > */
 
 bool	atomic_is_running(t_engine *e);
-void	atomic_finish_eating(t_philo *philo);
 void	atomic_stop_running(t_engine *e);
+void	atomic_finish_eating(t_philo *philo);
+void	atomic_print_msg(t_philo *philo, t_state state);
 /*
 ** < ylogging.c > */
 
 void	print_msg(t_philo *philo, t_state state);
-void	atomic_print_msg(t_philo *philo, t_state state);
 /*
 ** < ytime.c > */
 

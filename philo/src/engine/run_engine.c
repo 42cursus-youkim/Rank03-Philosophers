@@ -6,23 +6,24 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 14:21:37 by youkim            #+#    #+#             */
-/*   Updated: 2022/01/22 16:26:18 by youkim           ###   ########.fr       */
+/*   Updated: 2022/01/22 17:00:03 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-static int	del_engine(t_engine *e, int till, bool is_manager_on, t_err err)
+static int	del_engine(t_engine *e, int till, t_err err)
 {
 	int	id;
 
+	atomic_stop_running(e);
 	id = 0;
 	while (++id <= till)
 	{
 		pthread_join(e->philos[id].thread, NULL);
 		pthread_mutex_destroy(&e->forks[id]);
 	}
-	if (is_manager_on)
+	if (err == OK)
 		pthread_join(e->manager, NULL);
 	free(e->philos);
 	free(e->forks);
@@ -38,8 +39,8 @@ int	run_engine(t_engine *e)
 	id = 0;
 	while (++id <= pnum)
 		if (new_pthread(&e->philos[id].thread, routine, &e->philos[id]) != OK)
-			return (del_engine(e, id, false, ERR_THREAD));
+			return (del_engine(e, id - 1, ERR_THREAD));
 	if (new_pthread(&e->manager, manager, e) != OK)
-		return (del_engine(e, pnum, true, ERR_THREAD));
-	return (del_engine(e, pnum, true, OK));
+		return (del_engine(e, pnum, ERR_THREAD));
+	return (del_engine(e, pnum, OK));
 }

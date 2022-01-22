@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 17:08:22 by youkim            #+#    #+#             */
-/*   Updated: 2022/01/22 16:26:21 by youkim           ###   ########.fr       */
+/*   Updated: 2022/01/22 17:00:18 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	exit_err(t_err err)
 		"could not initialize mutex",
 		"could not initialize thread",
 	};
+
 	if (err == OK)
 		return (0);
 	printf("%s\n", err_msg[err]);

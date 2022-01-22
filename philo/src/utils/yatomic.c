@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 15:14:15 by youkim            #+#    #+#             */
-/*   Updated: 2022/01/22 15:17:06 by youkim           ###   ########.fr       */
+/*   Updated: 2022/01/22 16:51:10 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,13 @@ bool	atomic_is_running(t_engine *e)
 	return (ret);
 }
 
+void	atomic_stop_running(t_engine *e)
+{
+	pthread_mutex_lock(&e->enginelock);
+	e->is_running = false;
+	pthread_mutex_unlock(&e->enginelock);
+}
+
 /*	increase the number of philosophers who finished eating.
 	variable race condition protected with mutex[e->lock].
 */
@@ -33,9 +40,9 @@ void	atomic_finish_eating(t_philo *philo)
 	pthread_mutex_unlock(&philo->e->enginelock);
 }
 
-void	atomic_stop_running(t_engine *e)
+void	atomic_print_msg(t_philo *philo, t_state state)
 {
-	pthread_mutex_lock(&e->enginelock);
-	e->is_running = false;
-	pthread_mutex_unlock(&e->enginelock);
+	pthread_mutex_lock(&philo->e->enginelock);
+	print_msg(philo, state);
+	pthread_mutex_unlock(&philo->e->enginelock);
 }
