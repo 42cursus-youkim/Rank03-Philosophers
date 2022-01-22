@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 17:08:22 by youkim            #+#    #+#             */
-/*   Updated: 2022/01/22 17:00:18 by youkim           ###   ########.fr       */
+/*   Updated: 2022/01/22 17:05:17 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,5 @@ int	exit_err(t_err err)
 
 int	new_pthread(pthread_t *thread, t_routine_f routine, void *arg)
 {
-	return pthread_create(thread, NULL, routine, arg);
+	return (pthread_create(thread, NULL, routine, arg));
 }
