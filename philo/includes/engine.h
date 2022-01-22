@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   engine.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youkim    <42.4.youkim@gmail.com>          +#+  +:+       +#+        */
+/*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 17:08:22 by youkim            #+#    #+#             */
-/*   Updated: 2022/01/17 19:02:48 by youkim           ###   ########.fr       */
+/*   Updated: 2022/01/22 16:19:39 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ t_err	init_engine(t_engine *e, int argc, char *argv[]);
 /*
 ** < run_engine.c > */
 
-void	run_engine(t_engine *e);
-void	del_engine(t_engine *e);
+int		run_engine(t_engine *e);
 //	@end
 #endif

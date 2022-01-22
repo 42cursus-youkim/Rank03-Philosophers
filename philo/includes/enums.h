@@ -6,14 +6,14 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 14:21:37 by youkim            #+#    #+#             */
-/*   Updated: 2022/01/22 14:44:56 by youkim           ###   ########.fr       */
+/*   Updated: 2022/01/22 16:20:26 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENUMS_H
 # define ENUMS_H
 
-typedef enum e_res
+typedef enum e_err
 {
 	OK = 0,
 	ERR_ARG,
@@ -21,6 +21,7 @@ typedef enum e_res
 	ERR_MEM,
 	ERR_PHILO,
 	ERR_MUTEX,
+	ERR_THREAD,
 }	t_err;
 
 typedef enum e_in_usec

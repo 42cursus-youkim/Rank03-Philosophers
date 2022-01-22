@@ -37,5 +37,6 @@ size_t	msec_diff(struct timeval from);
 t_err	yatoui(const char *str, int *n);
 void	*ycalloc(const size_t size);
 int		exit_err(t_err err);
+int		new_pthread(pthread_t *thread, t_routine_f routine, void *arg);
 //	@end
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youkim    <42.4.youkim@gmail.com>          +#+  +:+       +#+        */
+/*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 14:21:37 by youkim            #+#    #+#             */
-/*   Updated: 2022/01/17 19:01:27 by youkim           ###   ########.fr       */
+/*   Updated: 2022/01/22 15:41:06 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,5 @@ int	main(int argc, char *argv[])
 	err = init_engine(&engine, argc, argv);
 	if (err)
 		return (exit_err(err));
-	run_engine(&engine);
-	del_engine(&engine);
-	return (0);
+	return (run_engine(&engine));
 }
