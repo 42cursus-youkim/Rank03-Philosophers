@@ -4,26 +4,24 @@ t_err	check_argc(int argc)
 {
 	if (5 <= argc && argc <= 6)
 		return (OK);
-	return (ERR_ARG);
+	printf("Usage: %s%s\n",
+		"./philosophers num_philos time_to_die",
+		"time_to_eat time_to_sleep [nums_need_eat]");
+	exit(1);
 }
 
-t_err	init_flag(t_engine *e, int argc, char *argv[])
+void	init_flag(t_engine *e, int argc, char *argv[])
 {
-	int		i;
-	t_err	err;
+	int	i;
 
-	err = check_argc(argc);
-	if (err)
-		return (err);
 	e->is_running = true;
 	e->flag[nums_need_eat] = 0;
 	e->flag[nums_philos_finished_eat] = 0;
 	i = -1;
 	while (++i < argc - 1)
 		if (yatoui(argv[i + 1], &e->flag[i]) != OK)
-			return (ERR_NUM);
+			yerror("cannot convert given argument to non-negative integer");
 	if (e->flag[num_philos] <= 0)
-		return (ERR_PHILO);
+		yerror("number of philosophers must be positive");
 	gettimeofday(&e->start_time, NULL);
-	return (OK);
 }

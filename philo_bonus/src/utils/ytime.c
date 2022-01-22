@@ -8,13 +8,13 @@ size_t	getusec(void)
 	return (tv.tv_sec * sec_in_usec + tv.tv_usec);
 }
 
-//	sleep in miliseconds
+//	sleep in miliseconds. for better context switching, at least wait 100usec
 void	msleep(size_t ms)
 {
 	const size_t	start = getusec();
 
 	while (getusec() - start <= ms * mili_in_usec)
-		usleep(10);
+		usleep(100);
 }
 
 size_t	msec_diff(struct timeval from)

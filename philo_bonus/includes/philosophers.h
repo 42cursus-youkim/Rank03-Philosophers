@@ -19,7 +19,7 @@
 
 //	===== philosophers =====
 # include "typedefs.h"
-# include "philo.h"
+# include "process.h"
 # include "engine.h"
 # include "utils.h"
 # include "colors.h"

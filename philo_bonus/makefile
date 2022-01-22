@@ -12,11 +12,11 @@ DFLAGS	 := -g #-DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address"
 RM       := rm -rf
 TEST     := ./$(NAME) 2 410 200 100 1 #philos death eat sleep end
 # ===== Packages =====
-PKGS     := engine utils ylibz #hilo
-engineV  := #checks init_engine run_engine del_engine
-# philoV   := philo manager
-utilsV   := ysemtex #ytime ythread yutils ylogging
-ylibzV   := ystr yutils
+PKGS     := engine utils process
+engineV  := checks run_engine
+processV := engine_proc philo_proc
+utilsV   := ysem ystr yutils ytime ylogging
+ylibzV   :=
 # ===== Macros =====
 define choose_modules
 	$(foreach pkg, $(1),\
@@ -69,7 +69,7 @@ log: docs all cls
 
 # ===== Valgrind =====
 VFLAGS := --leak-check=full --show-leak-kinds=all \
-			--track-origins=yes --show-reachable=no
+			--track-origins=yes #--show-reachable=no
 HFLAG  := --tool=helgrind
 VSFLAGS := --show-reachable=yes --error-limit=no --gen-suppressions=all \
 			--log-file=./mlx.supp

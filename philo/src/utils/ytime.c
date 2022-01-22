@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ytime.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youkim    <42.4.youkim@gmail.com>          +#+  +:+       +#+        */
+/*   By: youkim <42.4.youkim@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 14:21:37 by youkim            #+#    #+#             */
-/*   Updated: 2022/01/15 14:21:37 by youkim           ###   ########.fr       */
+/*   Updated: 2022/01/18 17:18:44 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	msleep(size_t ms)
 	const size_t	start = getusec();
 
 	while (getusec() - start <= ms * mili_in_usec)
-		usleep(10);
+		usleep(100);
 }
 
 size_t	msec_diff(struct timeval from)

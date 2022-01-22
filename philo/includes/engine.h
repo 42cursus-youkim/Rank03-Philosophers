@@ -6,7 +6,7 @@
 /*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 17:08:22 by youkim            #+#    #+#             */
-/*   Updated: 2022/01/22 16:19:39 by youkim           ###   ########.fr       */
+/*   Updated: 2022/01/22 16:43:42 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ typedef struct s_engine
 }	t_engine;
 
 typedef void	*(*t_routine_f)(void *arg);
-typedef void	(*t_philoact_f)(t_philo *);
 
 //	@func
 /*

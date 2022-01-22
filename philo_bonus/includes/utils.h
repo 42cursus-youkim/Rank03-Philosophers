@@ -3,22 +3,20 @@
 
 //	@func
 /*
-** < ylogging.c > */
+** < ysem.c > */
 
-void	print_msg(t_philo *philo, t_state state);
-void	atomic_print_msg(t_philo *philo, t_state state);
+void	new_ysem(t_ysem *ysem, char *name, int amount);
+void	del_ysem(t_ysem *ysem);
+void	ysem_lock(t_ysem *ysem);
+void	ysem_unlock(t_ysem *ysem);
 /*
-** < ysemtex.c > */
+** < ystr.c > */
 
-void	semtex_init(t_semtex *semtex, const char *name, int amount);
-void	semtex_destroy(t_semtex *semtex);
-void	semtex_lock(t_semtex *semtex);
-void	semtex_unlock(t_semtex *semtex);
-/*
-** < ythread.c > */
-
-void	init_thread(pthread_t *pthread, t_routine_f func, void *arg);
-void	init_mutex(pthread_mutex_t *mutex);
+char	*new_ystr(const char *from);
+char	*new_ystrm(int length);
+int		ystrlen(const char *str);
+int		ystrcpy(char *dst, const char *src);
+int		ystr_append(char **pstr, char *src);
 /*
 ** < ytime.c > */
 
@@ -26,10 +24,12 @@ size_t	getusec(void);
 void	msleep(size_t ms);
 size_t	msec_diff(struct timeval from);
 /*
-** < yutils-old.c > */
+** < yutils.c > */
 
 t_err	yatoui(const char *str, int *n);
-int		exit_err(t_err err);
-void	atomic_stop_running(t_engine *e);
+char	*new_yuitoa(int n);
+void	yerror(char *msg);
+void	*ycalloc(const size_t size);
+void	init_thread(pthread_t *pthread, t_routine_f func, void *arg);
 //	@end
 #endif

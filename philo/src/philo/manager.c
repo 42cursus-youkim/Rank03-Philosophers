@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manager.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youkim    <42.4.youkim@gmail.com>          +#+  +:+       +#+        */
+/*   By: youkim <42.4.youkim@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 17:08:22 by youkim            #+#    #+#             */
-/*   Updated: 2022/01/17 18:53:16 by youkim           ###   ########.fr       */
+/*   Updated: 2022/01/18 15:25:49 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	*manager(void *arg)
 	while (atomic_is_running(e))
 	{
 		check_philos(e, philos);
-		msleep(2);
+		msleep(1);
 	}
 	return (NULL);
 }

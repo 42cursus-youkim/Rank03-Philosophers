@@ -4,10 +4,7 @@
 typedef enum e_res
 {
 	OK = 0,
-	ERR_ARG,
-	ERR_NUM,
-	ERR_MEM,
-	ERR_PHILO,
+	ERR = -1,
 }	t_err;
 
 typedef enum e_in_usec
@@ -27,7 +24,7 @@ typedef enum e_flag
 	nums_philos_finished_eat,
 }	t_flag;
 
-typedef enum s_state
+typedef enum e_state
 {
 	TAKEFORK,
 	EATING,
@@ -36,11 +33,16 @@ typedef enum s_state
 	DIED,
 }	t_state;
 
+typedef enum e_const
+{
+	IS_CHILD = 0,
+}	t_const;
+
 //	mutex implemention in semaphore
-typedef struct s_semtex
+typedef struct s_ysem
 {
 	char	*name;
 	sem_t	*sem;
-}	t_semtex;
+}	t_ysem;
 
 #endif
