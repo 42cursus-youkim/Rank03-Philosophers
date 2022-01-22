@@ -3,12 +3,12 @@
 
 //	@func
 /*
-** < ysemtex.c > */
+** < ysem.c > */
 
-void	new_semtex(t_semtex *semtex, char *name, int amount);
-void	del_semtex(t_semtex *semtex);
-void	semtex_lock(t_semtex *semtex);
-void	semtex_unlock(t_semtex *semtex);
+void	new_ysem(t_ysem *ysem, char *name, int amount);
+void	del_ysem(t_ysem *ysem);
+void	ysem_lock(t_ysem *ysem);
+void	ysem_unlock(t_ysem *ysem);
 /*
 ** < ystr.c > */
 

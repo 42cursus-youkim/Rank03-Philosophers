@@ -12,10 +12,9 @@ void	init_philo(t_engine *e, t_philo *philo, int id)
 */
 void	init_engine(t_engine *e, int argc, char *argv[])
 {
-	check_argc(argc);
 	init_flag(e, argc, argv);
-	new_semtex(&e->enginelock, "engine", 1);
-	new_semtex(&e->forks, "forks", e->flag[num_philos]);
+	new_ysem(&e->enginelock, "engine", 1);
+	new_ysem(&e->forks, "forks", e->flag[num_philos]);
 	// e->pids = ycalloc(e->flag[num_philos] * sizeof(int));
 	e->philos = ycalloc(e->flag[num_philos] * sizeof(t_philo));
 }
@@ -40,7 +39,7 @@ void	run_engine(t_engine *e)
 
 void	del_engine(t_engine *e)
 {
-	del_semtex(&e->enginelock);
-	del_semtex(&e->forks);
+	del_ysem(&e->enginelock);
+	del_ysem(&e->forks);
 	free(e->philos);
 }

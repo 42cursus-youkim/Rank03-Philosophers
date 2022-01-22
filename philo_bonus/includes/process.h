@@ -4,10 +4,10 @@
 typedef struct s_engine
 {
 	int				flag[6];
-	t_semtex		forks;
+	t_ysem			forks;
 	// int				*pids;
 	struct s_philo	*philos;
-	t_semtex		enginelock;
+	t_ysem			enginelock;
 	struct timeval	start_time;
 	bool			is_running;
 }	t_engine;

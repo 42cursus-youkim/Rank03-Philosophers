@@ -15,7 +15,7 @@ TEST     := ./$(NAME) 2 410 200 100 1 #philos death eat sleep end
 PKGS     := engine utils process
 engineV  := checks run_engine
 processV := engine_proc philo_proc
-utilsV   := ysemtex ystr yutils ytime ylogging
+utilsV   := ysem ystr yutils ytime ylogging
 ylibzV   :=
 # ===== Macros =====
 define choose_modules

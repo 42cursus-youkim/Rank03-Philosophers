@@ -39,10 +39,10 @@ typedef enum e_const
 }	t_const;
 
 //	mutex implemention in semaphore
-typedef struct s_semtex
+typedef struct s_ysem
 {
 	char	*name;
 	sem_t	*sem;
-}	t_semtex;
+}	t_ysem;
 
 #endif
