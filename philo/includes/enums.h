@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   enums.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youkim    <42.4.youkim@gmail.com>          +#+  +:+       +#+        */
+/*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 14:21:37 by youkim            #+#    #+#             */
-/*   Updated: 2022/01/15 14:21:37 by youkim           ###   ########.fr       */
+/*   Updated: 2022/01/22 14:44:56 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef enum e_res
 	ERR_NUM,
 	ERR_MEM,
 	ERR_PHILO,
+	ERR_MUTEX,
 }	t_err;
 
 typedef enum e_in_usec

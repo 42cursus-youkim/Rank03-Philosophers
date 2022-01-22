@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   yutils.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: youkim    <42.4.youkim@gmail.com>          +#+  +:+       +#+        */
+/*   By: youkim < youkim@student.42seoul.kr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 17:08:22 by youkim            #+#    #+#             */
-/*   Updated: 2022/01/17 19:00:36 by youkim           ###   ########.fr       */
+/*   Updated: 2022/01/22 15:01:13 by youkim           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ int	exit_err(t_err err)
 		num_philos time_to_die time_to_eat time_to_sleep [nums_need_eat]",
 		"cannot convert given argument to non-negative integer",
 		"failed to allocate memory",
-		"number of philosophers must be positive",
+		"invalid number of philosophers",
+		"could not initialize mutex",
 	};
 
 	printf("%s\n", err_msg[err]);
