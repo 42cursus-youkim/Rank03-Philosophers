@@ -10,11 +10,11 @@ INC      := -I includes/
 DFLAGS	 := -g #-DCMAKE_EXE_LINKER_FLAGS="-fsanitize=address"
 
 RM       := rm -rf
-TEST     := ./$(NAME) 3 410 200 100 1 #philos death eat sleep end
+TEST     := ./$(NAME) 2 410 200 100 1 #philos death eat sleep end
 # ===== Packages =====
 PKGS     := engine utils process
 engineV  := checks run_engine
-processV := procs
+processV := engine_proc philo_proc
 utilsV   := ysemtex ystr yutils ytime ylogging
 ylibzV   :=
 # ===== Macros =====
@@ -69,7 +69,7 @@ log: docs all cls
 
 # ===== Valgrind =====
 VFLAGS := --leak-check=full --show-leak-kinds=all \
-			--track-origins=yes --show-reachable=no
+			--track-origins=yes #--show-reachable=no
 HFLAG  := --tool=helgrind
 VSFLAGS := --show-reachable=yes --error-limit=no --gen-suppressions=all \
 			--log-file=./mlx.supp
